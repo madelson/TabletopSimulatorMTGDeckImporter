@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TabletopMtgImporter.Console\TabletopMtgImporter.Console.csproj" />
+    <ProjectReference Include="..\TabletopMtgImporter.Core\TabletopMtgImporter.Core.csproj" />
   </ItemGroup>
   
   <ItemGroup>

@@ -16,6 +16,12 @@ namespace TabletopMtgImporter
         private static readonly string Cache = Path.Combine(Path.GetTempPath(), "TabletopMtgImporter", "Cache");
 
         private readonly HttpClient _httpClient = new HttpClient { BaseAddress = new Uri("https://api.scryfall.com/") };
+        private readonly ILogger _logger;
+
+        public ScryfallClient(ILogger logger)
+        {
+            this._logger = logger;
+        }
 
         public async Task<T> GetJsonAsync<T>(string url)
         {
@@ -24,7 +30,7 @@ namespace TabletopMtgImporter
                 return cached;
             }
 
-            System.Console.WriteLine($"Downloading {url}");
+            this._logger.Info($"Downloading {url}");
 
             // rate-limiting requested by scryfall
             await Task.Delay(TimeSpan.FromMilliseconds(50)).ConfigureAwait(false);
@@ -54,7 +60,7 @@ namespace TabletopMtgImporter
                 }
                 catch (Exception ex)
                 {
-                    System.Console.Error.WriteLine($"Possible cache corruption: {path}: {ex}");
+                    this._logger.Debug($"Possible cache corruption: {path}: {ex}");
                 }
             }
 

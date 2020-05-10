@@ -12,14 +12,9 @@
     <PackageReference Include="costura.fody" Version="4.1.0">
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-    <PackageReference Include="nullable" Version="1.2.1">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="System.Net.Http" />
+    <ProjectReference Include="..\TabletopMtgImporter.Core\TabletopMtgImporter.Core.csproj" />
   </ItemGroup>
 </Project>
