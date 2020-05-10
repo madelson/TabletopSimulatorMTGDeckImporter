@@ -10,7 +10,8 @@ namespace TabletopMtgImporter.Tests
 {
     public class EndToEndTest
     {
-        [TestCase("Archidekt Plain Export Format.txt")]
+        [TestCase("Archidekt1CardNameFormat.txt")]
+        [TestCase("Archidekt1xCardNameCodeCategoryLabel.txt")]
         public async Task TestRunsEndToEndWithoutErrors(string sampleName)
         {
             using var sample = SamplesHelper.GetSample(sampleName);

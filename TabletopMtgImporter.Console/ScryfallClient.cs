@@ -27,21 +27,19 @@ namespace TabletopMtgImporter
             System.Console.WriteLine($"Downloading {url}");
 
             // rate-limiting requested by scryfall
-            await Task.Delay(TimeSpan.FromMilliseconds(50));
+            await Task.Delay(TimeSpan.FromMilliseconds(50)).ConfigureAwait(false);
 
-            using (var response = await this._httpClient.GetAsync(url))
+            using var response = await this._httpClient.GetAsync(url).ConfigureAwait(false);
+            if (!response.IsSuccessStatusCode)
             {
-                if (!response.IsSuccessStatusCode)
-                {
-                    var body = await (response.Content?.ReadAsStringAsync() ?? Task.FromResult("n/a"));
-                    throw new InvalidOperationException($"Request to {url} failed with status code {response.StatusCode}. Body: '{body}'");
-                }
-
-                var content = await response.Content.ReadAsStringAsync();
-                var result = JsonConvert.DeserializeObject<T>(content); // ensure deserializes before caching
-                this.AddToCache(url, content);
-                return result;
+                var body = await (response.Content?.ReadAsStringAsync() ?? Task.FromResult("n/a")).ConfigureAwait(false);
+                throw new InvalidOperationException($"Request to {url} failed with status code {response.StatusCode}. Body: '{body}'");
             }
+
+            var content = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            var result = JsonConvert.DeserializeObject<T>(content); // ensure deserializes before caching
+            this.AddToCache(url, content);
+            return result;
         }
 
         private bool TryGetCachedResponse<T>(string url, out T value)
@@ -60,7 +58,7 @@ namespace TabletopMtgImporter
                 }
             }
 
-            value = default;
+            value = default!;
             return false;
         }
 
@@ -75,12 +73,10 @@ namespace TabletopMtgImporter
 
         private static string HashUrl(string url)
         {
-            using (var sha = SHA256.Create())
-            {
-                var bytes = Encoding.UTF8.GetBytes(url);
-                var hash = sha.ComputeHash(bytes);
-                return new BigInteger(hash).ToString("x");
-            }
+            using var sha = SHA256.Create();
+            var bytes = Encoding.UTF8.GetBytes(url);
+            var hash = sha.ComputeHash(bytes);
+            return new BigInteger(hash).ToString("x");
         }
     }
 }

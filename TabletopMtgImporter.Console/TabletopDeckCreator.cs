@@ -8,7 +8,7 @@ namespace TabletopMtgImporter
 {
     internal static class TabletopDeckCreator
     {
-        public static TabletopDeckObject CreateDeck(IReadOnlyList<string> cards, IReadOnlyDictionary<string, ScryfallCard> cardsAndRelatedCards)
+        public static TabletopDeckObject CreateDeck(IReadOnlyList<DeckCard> cards, IReadOnlyDictionary<DeckCard, ScryfallCard> cardsAndRelatedCards)
         {
             var tokens = cardsAndRelatedCards.Keys.Except(cards)
                 .ToArray();
@@ -27,7 +27,7 @@ namespace TabletopMtgImporter
                             {
                                 CardId = ToId(index),
                                 Name = "Card",
-                                Nickname = c,
+                                Nickname = c.Name,
                             })
                             .ToList(),
                         DeckIds = Enumerable.Range(0, cards.Count).Select(ToId).ToList(),
@@ -36,7 +36,7 @@ namespace TabletopMtgImporter
                                 t => t.index + 1,
                                 t => new TabletopDeckObject.CardInfo
                                 {
-                                    FaceUrl = (cardsAndRelatedCards[t.card].ImageUris ?? cardsAndRelatedCards[t.card].Faces[0].ImageUris)["large"],
+                                    FaceUrl = (cardsAndRelatedCards[t.card].ImageUris ?? cardsAndRelatedCards[t.card].Faces![0].ImageUris)["large"],
                                 }
                             ),
                         Transform = { PosY = 1 }
@@ -50,7 +50,7 @@ namespace TabletopMtgImporter
                             {
                                 CardId = ToId(index),
                                 Name = "Card",
-                                Nickname = c,
+                                Nickname = c.Name,
                             })
                             .ToList(),
                         DeckIds = Enumerable.Range(0, tokens.Length).Select(ToId).ToList(),
@@ -59,7 +59,7 @@ namespace TabletopMtgImporter
                                 t => t.index + 1,
                                 t => new TabletopDeckObject.CardInfo
                                 {
-                                    FaceUrl = cardsAndRelatedCards[t.card].ImageUris["large"],
+                                    FaceUrl = cardsAndRelatedCards[t.card].ImageUris!["large"],
                                 }
                             ),
                         Transform = { PosX = 2.2, RotZ = 0 },
@@ -82,7 +82,7 @@ namespace TabletopMtgImporter
                                 t => t.index + 1,
                                 t => new TabletopDeckObject.CardInfo
                                 {
-                                    FaceUrl = t.card.Faces[0].ImageUris["large"],
+                                    FaceUrl = t.card.Faces![0].ImageUris["large"],
                                     BackUrl = t.card.Faces[1].ImageUris["large"],
                                 }
                             ),

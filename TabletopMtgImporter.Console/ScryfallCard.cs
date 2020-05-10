@@ -10,28 +10,30 @@ namespace TabletopMtgImporter
     // based on https://scryfall.com/docs/api/cards
     internal class ScryfallCard
     {
-        public string Lang;
-        public string Name;
+        public string Name = default!;
+        public string Set = default!;
+        [JsonProperty("collector_number")]
+        public int CollectorNumber;
         // see https://scryfall.com/docs/api/layouts
-        public string Layout;
+        public string? Layout;
 
         [JsonProperty("card_faces")]
-        public Face[] Faces;
+        public Face[]? Faces;
         [JsonProperty("image_uris")]
-        public Dictionary<string, Uri> ImageUris;
+        public Dictionary<string, Uri>? ImageUris;
         [JsonProperty("all_parts")]
-        public RelatedCard[] RelatedCards;
+        public RelatedCard[]? RelatedCards;
 
         public class Face
         {
             [JsonProperty("image_uris")]
-            public Dictionary<string, Uri> ImageUris;
+            public Dictionary<string, Uri> ImageUris = default!;
         }
 
         public class RelatedCard
         {
-            public string Name;
-            public Uri Uri;
+            public string Name = default!;
+            public Uri Uri = default!;
         }
     }
 }

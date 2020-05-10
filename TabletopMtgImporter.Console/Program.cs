@@ -39,7 +39,7 @@ namespace TabletopMtgImporter.Console
                 return 2;
             }
 
-            List<string> cards;
+            List<DeckCard> cards;
             using (var reader = new StreamReader(deckFile))
             {
                 if (!DeckParser.TryParse(reader, out cards, out var errorLines))
@@ -60,16 +60,21 @@ namespace TabletopMtgImporter.Console
                 Console.Error.WriteLine($"WARNING: deck file contains {cards.Count} cards");
             }
 
-            var cardInfo = new Dictionary<string, ScryfallCard>();
+            var cardInfo = new Dictionary<DeckCard, ScryfallCard>();
             var scryfallClient = new ScryfallClient();
             foreach (var card in cards.Distinct())
             {
-                var info = await scryfallClient.GetJsonAsync<ScryfallCard>($"/cards/named?exact={WebUtility.UrlEncode(card)}");
+                var url = card.CollectorNumber.HasValue
+                    ? $"/cards/{WebUtility.UrlEncode(card.Set)}/{card.CollectorNumber}"
+                    : $"/cards/named?exact={WebUtility.UrlEncode(card.Name)}{(card.Set != null ? $"&set={WebUtility.UrlEncode(card.Set)}" : string.Empty)}";
+
+                var info = await scryfallClient.GetJsonAsync<ScryfallCard>(url).ConfigureAwait(false);
+                
                 cardInfo[card] = info;
                 foreach (var relatedCard in info.RelatedCards ?? Enumerable.Empty<ScryfallCard.RelatedCard>())
                 {
-                    var relatedInfo = await scryfallClient.GetJsonAsync<ScryfallCard>(relatedCard.Uri.AbsoluteUri);
-                    cardInfo[relatedInfo.Name] = relatedInfo;
+                    var relatedInfo = await scryfallClient.GetJsonAsync<ScryfallCard>(relatedCard.Uri.AbsoluteUri).ConfigureAwait(false);
+                    cardInfo[new DeckCard(relatedInfo.Name, set: relatedInfo.Set, collectorNumber: relatedInfo.CollectorNumber, isCommander: false)] = relatedInfo;
                 }
             }
 

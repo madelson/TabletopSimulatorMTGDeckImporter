@@ -8,15 +8,15 @@ namespace TabletopMtgImporter
 {
     internal class TabletopDeckObject
     {
-        public List<ObjectState> ObjectStates;
+        public List<ObjectState> ObjectStates = default!;
 
         public class ObjectState
         {
-            public string Name;
-            public List<CardReference> ContainedObjects;
+            public string Name = default!;
+            public List<CardReference> ContainedObjects = default!;
             [JsonProperty("DeckIDs")]
-            public List<int> DeckIds;
-            public Dictionary<int, CardInfo> CustomDeck;
+            public List<int> DeckIds = default!;
+            public Dictionary<int, CardInfo> CustomDeck = default!;
             public Transform Transform = new Transform();
         }
 
@@ -24,8 +24,8 @@ namespace TabletopMtgImporter
         {
             [JsonProperty("CardID")]
             public int CardId;
-            public string Name;
-            public string Nickname;
+            public string Name = default!;
+            public string Nickname = default!;
             public Transform Transform = new Transform();
         }
 
@@ -34,7 +34,7 @@ namespace TabletopMtgImporter
             private static readonly Uri DefaultBackUrl = new Uri("https://www.frogtown.me/images/gatherer/CardBack.jpg");
 
             [JsonProperty("FaceURL")]
-            public Uri FaceUrl;
+            public Uri FaceUrl = default!;
             [JsonProperty("BackURL")]
             public Uri BackUrl = DefaultBackUrl;
             public int NumHeight = 1;
