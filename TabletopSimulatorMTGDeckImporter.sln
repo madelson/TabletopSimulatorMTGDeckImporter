@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TabletopMtgImporter.Tests",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TabletopMtgImporter.Core", "TabletopMtgImporter.Core\TabletopMtgImporter.Core.csproj", "{479C3985-4E3B-4FCF-A4E7-74155FDD7F9A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TabletopMtgImporter.Wpf", "TabletopMtgImporter.Wpf\TabletopMtgImporter.Wpf.csproj", "{E7FF90EC-3803-4B8B-BCDB-9CFF4C299FD2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{479C3985-4E3B-4FCF-A4E7-74155FDD7F9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{479C3985-4E3B-4FCF-A4E7-74155FDD7F9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{479C3985-4E3B-4FCF-A4E7-74155FDD7F9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7FF90EC-3803-4B8B-BCDB-9CFF4C299FD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7FF90EC-3803-4B8B-BCDB-9CFF4C299FD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7FF90EC-3803-4B8B-BCDB-9CFF4C299FD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7FF90EC-3803-4B8B-BCDB-9CFF4C299FD2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
