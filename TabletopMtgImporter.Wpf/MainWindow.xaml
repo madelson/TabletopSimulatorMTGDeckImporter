@@ -17,13 +17,13 @@
             </TabItem>
             <TabItem Header="Select deck file">
                 <StackPanel Orientation="Vertical" VerticalAlignment="Center">
-                    <Button Height="45" Width="150" HorizontalAlignment="Center">
+                    <Button Command="{Binding SelectFileCommand}" Height="45" Width="150" HorizontalAlignment="Center">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="/TabletopMTGImporterGUI;component/Images/OpenFile.png" />
                             <Label Padding="1" VerticalAlignment="Center">Select deck file...</Label>
                         </StackPanel>
                     </Button>
-                    <Label Name="selectedFileLabel" HorizontalAlignment="Center">no file selected</Label>
+                    <Label Content="{Binding SelectedFileDisplay}" HorizontalAlignment="Center" />
                 </StackPanel>
             </TabItem>
         </TabControl>

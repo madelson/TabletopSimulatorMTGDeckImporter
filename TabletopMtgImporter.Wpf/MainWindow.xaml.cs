@@ -23,6 +23,7 @@ namespace TabletopMtgImporter.Wpf
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = new MainWindowViewModel();
         }
     }
 }

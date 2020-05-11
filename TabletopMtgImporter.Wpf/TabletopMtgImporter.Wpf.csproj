@@ -4,6 +4,8 @@
     <AssemblyName>TabletopMTGImporterGUI</AssemblyName>
     <TargetFramework>net461</TargetFramework>
     <UseWPF>true</UseWPF>
+    <LangVersion>8.0</LangVersion>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
