@@ -11,9 +11,14 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <TabControl Grid.Column="0">
+        <TabControl SelectedIndex="{Binding SelectedTabIndex}" Grid.Column="0">
             <TabItem Header="Paste deck">
-                <TextBox AcceptsReturn="true" VerticalScrollBarVisibility="Auto" />
+                <DockPanel>
+                    <Label DockPanel.Dock="Top">Name</Label>
+                    <TextBox Text="{Binding PastedDeckName, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Top"/>
+                    <Label DockPanel.Dock="Top">Deck</Label>
+                    <TextBox DockPanel.Dock="Bottom" Text="{Binding PastedText, UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="true" VerticalScrollBarVisibility="Auto" />
+                </DockPanel>
             </TabItem>
             <TabItem Header="Select deck file">
                 <StackPanel Orientation="Vertical" VerticalAlignment="Center">
@@ -28,13 +33,13 @@
             </TabItem>
         </TabControl>
         <DockPanel Grid.Column="1">
-            <Button Name="importButton" Height="45" Width="150" HorizontalAlignment="Center" Margin="5" DockPanel.Dock="Top" IsEnabled="False">
+            <Button Command="{Binding ImportCommand}" Height="45" Width="150" HorizontalAlignment="Center" Margin="5" DockPanel.Dock="Top">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="/TabletopMTGImporterGUI;component/Images/Deck.png" />
                     <Label Padding="10" VerticalAlignment="Center">Import deck</Label>
                 </StackPanel>
             </Button>
-            <TextBox Name="outputPane" IsReadOnly="true" VerticalScrollBarVisibility="Visible" DockPanel.Dock="Bottom"/>
+            <TextBox Text="{Binding OutputPaneText}" IsReadOnly="true" VerticalScrollBarVisibility="Visible" DockPanel.Dock="Bottom" />
         </DockPanel>
     </Grid>
 </Window>

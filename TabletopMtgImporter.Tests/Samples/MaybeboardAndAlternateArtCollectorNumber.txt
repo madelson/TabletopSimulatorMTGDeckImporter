@@ -1,0 +1,98 @@
+﻿1x Grenzo, Dungeon Warden (a25) `Commander` 
+1x Twilight Prophet (rix) `Draw` 
+1x Molten Slagheap (cma)
+1x Guiltfeeder (c16) `Beater` 
+1x Marionette Master (kld) `Beater` 
+1x Priest of the Blood Rite (ddr) `Beater` 
+1x Nahiri's Wrath (emn) `Synergy` 
+1x Nekrataal (ema) `Utility` 
+1x Raving Dead (c14) `Beater` 
+1x Drakestown Forgotten (cns) `Beater` 
+1x Ignition Team (cns) `Beater` 
+1x Canal Dredger (cns) `Utility` 
+1x Agent of Erebos (jou) `Utility` 
+1x Archetype of Finality (bng) `Utility` 
+1x Mindclaw Shaman (m13) `Utility` 
+1x Stuffy Doll (m13) `Utility` 
+1x Vengeful Pharaoh (m12) `Beater` 
+1x Clone Shell (som) `Utility` 
+1x Triskelion (ddf) `Beater` 
+1x Tuktuk Scrapper (wwk) `Utility` 
+1x Herald of Leshrac (csp) `Beater` 
+1x Arcbound Fiend (dst) `Beater` 
+1x Arcbound Overseer (dst) `Beater` 
+1x Woebearer (mrd) `Utility` 
+1x Clockwork Dragon (mrd) `Beater` 
+1x Tel-Jilad Stylus (mrd) `Synergy` 
+1x Abyssal Horror (7ed) `Utility` 
+1x Tsabo's Assassin (inv) `Utility` 
+1x Body Snatcher (uds) `Utility` 
+1x Entropic Specter (exo) `Beater` 
+1x Workhorse (exo) `Beater` 
+1x Spitting Hydra (sth) `Beater` 
+14x Swamp (mir) 342
+9x Mountain (mir) 344
+1x Soldevi Adnate (all) 60a `Ramp` 
+1x Priest of Yawgmoth (atq) `Ramp` 
+1x Skittering Surveyor (dom) `Ramp` 
+1x Desecrated Tomb (m19) `Synergy` 
+1x Crucible of Worlds (m19) `Ramp` 
+1x Triskelavus (cm2) `Beater` 
+1x Pentavus (cm2) `Beater` 
+1x Goblin Welder (cm2) `Utility` 
+1x Noosegraf Mob (bbd) `Beater` 
+1x Morbid Curiosity (bbd) `Draw` 
+1x Rocky Tar Pit (c18)
+1x Duplicant (c18) `Utility` 
+1x Siege-Gang Commander (gnt) `Utility` 
+1x Murderous Redcap (uma) `Utility` 
+1x Junktroller (rna) `Utility` 
+1x Sling-Gang Lieutenant (mh1) `Utility` 
+1x Graveshifter (mh1) `Utility` 
+1x Scaretiller (c19) `Ramp` 
+1x Terramorphic Expanse (c19)
+1x Drownyard Temple (c19)
+1x Chittering Witch (eld) `Utility` 
+1x Murderous Rider // Swift End (eld) `Utility` 
+1x Fires of Invention (eld) `Ramp` 
+1x The Cauldron of Eternity (eld) `Synergy` 
+1x Akoum Refuge (mb1)
+1x Pilgrim's Eye (mb1) `Ramp` 
+1x Kiki-Jiki, Mirror Breaker (mb1) `Utility` 
+1x Thorn of the Black Rose (mb1) `Draw` 
+1x Sewer Nemesis (mb1) `Beater` 
+1x Ravenous Chupacabra (mb1) `Utility` 
+1x Gravedigger (mb1) `Utility` 
+1x Gonti, Lord of Luxury (mb1) `Utility` 
+1x Cadaver Imp (mb1) `Utility` 
+1x Gray Merchant of Asphodel (thb) `Utility` 
+1x Irreverent Revelers (thb) `Utility` 
+1x Command Tower (c20)
+1x Spinerock Knoll (c20)
+1x Smoldering Marsh (c20)
+1x Rakdos Carnarium (c20)
+1x Bojuka Bog (c20)
+1x Ash Barrens (c20)
+1x Solemn Simulacrum (c20) `Ramp` 
+1x Disciple of Bolas (c20) `Draw` 
+1x Evolving Wilds (iko)
+1x Bloodfell Caves (iko)
+1x Arcbound Lancer (dst) `Maybeboard` 
+1x Summoner's Egg (5dn) `Maybeboard` 
+1x Mephitic Ooze (dst) `Maybeboard` 
+1x Vermiculos (mrd) `Maybeboard` 
+1x Anger (mb1) `Maybeboard` 
+1x Filth (jud) `Maybeboard` 
+1x Balthor the Defiled (jud) `Maybeboard` 
+1x Hound of Griselbrand (avr) `Maybeboard` 
+1x Netherborn Phalanx (gk1) `Maybeboard` 
+1x Shirei, Shizo's Caretaker (uma) `Maybeboard` 
+1x Dagger Caster (rna) `Maybeboard` 
+1x Sly Requisitioner (aer) `Maybeboard` 
+1x Earthshaker Khenra (hou) `Maybeboard` 
+1x Reito Lantern (cns) `Maybeboard` 
+1x Carrionette (tmp) `Maybeboard` 
+1x Outrage Shaman (eve) `Maybeboard` 
+1x Rustspore Ram (mrd) `Maybeboard` 
+1x Thought Gorger (roe) `Maybeboard` 
+1x Marauding Knight (inv) `Maybeboard` 

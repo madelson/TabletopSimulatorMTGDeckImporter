@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Extended.Wpf.Toolkit" Version="3.8.1" />
     <PackageReference Include="costura.fody" Version="4.1.0">
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>

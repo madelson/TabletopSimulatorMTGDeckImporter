@@ -12,8 +12,11 @@ namespace TabletopMtgImporter
     {
         public string Name = default!;
         public string Set = default!;
+        /// <summary>
+        /// See <see cref="DeckCard.CollectorNumber"/> for why this is a <see cref="string"/> rather than an <see cref="int"/>
+        /// </summary>
         [JsonProperty("collector_number")]
-        public int CollectorNumber;
+        public string CollectorNumber = default!;
         // see https://scryfall.com/docs/api/layouts
         public string? Layout;
 

@@ -8,9 +8,9 @@ namespace TabletopMtgImporter
 {
     internal class DeckCard
     {
-        public DeckCard(string name, string? set, int? collectorNumber, bool isCommander)
+        public DeckCard(string name, string? set, string? collectorNumber, bool isCommander)
         {
-            if (set == null && collectorNumber.HasValue)
+            if (set == null && collectorNumber != null)
             {
                 throw new ArgumentException("Cannot specify collector number without set");
             }
@@ -23,7 +23,11 @@ namespace TabletopMtgImporter
 
         public string Name { get; }
         public string? Set { get; }
-        public int? CollectorNumber { get; }
+        /// <summary>
+        /// This is not strictly an int because cards with multiple art versions can have numbers like "60a"
+        /// e. g. Soldevi Adnate
+        /// </summary>
+        public string? CollectorNumber { get; }
         public bool IsCommander { get; }
     }
 }

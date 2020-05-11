@@ -58,7 +58,7 @@ namespace TabletopMtgImporter
                 var hasDownloadError = false;
                 foreach (var card in cards.Distinct())
                 {
-                    var url = card.CollectorNumber.HasValue
+                    var url = card.CollectorNumber != null
                         ? $"/cards/{WebUtility.UrlEncode(card.Set)}/{card.CollectorNumber}"
                         : $"/cards/named?exact={WebUtility.UrlEncode(card.Name)}{(card.Set != null ? $"&set={WebUtility.UrlEncode(card.Set)}" : string.Empty)}";
 
@@ -68,7 +68,7 @@ namespace TabletopMtgImporter
                     {
                         hasDownloadError = true;
                         info = null;
-                        this._logger.Error($"Failed to download card '{card.Name}'{(card.Set != null ? $" ({card.Set})" : string.Empty)}{(card.CollectorNumber.HasValue ? $" #{card.CollectorNumber}" : string.Empty)}");
+                        this._logger.Error($"Failed to download card '{card.Name}'{(card.Set != null ? $" ({card.Set})" : string.Empty)}{(card.CollectorNumber != null ? $" #{card.CollectorNumber}" : string.Empty)}");
                         this._logger.Debug($"Failed to download {url}. Detailed exception information: " + ex);
                     }
 

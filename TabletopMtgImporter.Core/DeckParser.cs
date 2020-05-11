@@ -92,7 +92,7 @@ namespace TabletopMtgImporter
                     # card name. Disallow characters used to delimit the following sections as well as trailing whitespace
                     (?<name>[^\s\(`^]+(\s+[^\s\(`^]+)*)
                     # set and optionally collector number
-                    (\s\((?<set>\w+)\)(\s(?<collectorNumber>\d+))?)?
+                    (\s\((?<set>\w+)\)(\s(?<collectorNumber>\d+[a-zA-Z]?))?)?
                     # category
                     (\s`(?<category>[^`]+)`)?
                     # label
@@ -102,8 +102,7 @@ namespace TabletopMtgImporter
             );
 
             if (match.Success
-                && int.TryParse(match.Groups["count"].Value, out var count)
-                && TryParseCollectorNumber(out var collectorNumber))
+                && int.TryParse(match.Groups["count"].Value, out var count))
             {
                 const string CommanderCategory = "Commander",
                     MaybeboardCategory = "Maybeboard";
@@ -119,6 +118,9 @@ namespace TabletopMtgImporter
                 var setGroup = match.Groups["set"];
                 var set = setGroup.Success ? setGroup.Value : null;
 
+                var collectorNumberGroup = match.Groups["collectorNumber"];
+                var collectorNumber = collectorNumberGroup.Success ? collectorNumberGroup.Value : null;
+
                 var result = new DeckCard[count];
                 for (var i = 0; i < count; ++i)
                 {
@@ -131,24 +133,6 @@ namespace TabletopMtgImporter
             }
 
             return null;
-
-            bool TryParseCollectorNumber(out int? parsed)
-            {
-                var collectorNumberGroup = match.Groups["collectorNumber"];
-                if (!collectorNumberGroup.Success)
-                {
-                    parsed = null;
-                    return true;
-                }
-                if (int.TryParse(collectorNumberGroup.Value, out var parsedValue))
-                {
-                    parsed = parsedValue;
-                    return true;
-                }
-
-                parsed = null;
-                return false;
-            }
         }
 
         private enum Format

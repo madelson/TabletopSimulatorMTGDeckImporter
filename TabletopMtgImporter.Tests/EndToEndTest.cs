@@ -11,6 +11,7 @@ namespace TabletopMtgImporter.Tests
     {
         [TestCase("Archidekt1CardNameFormat.txt")]
         [TestCase("Archidekt1xCardNameCodeCategoryLabel.txt")]
+        [TestCase("MaybeboardAndAlternateArtCollectorNumber.txt")]
         public async Task TestRunsEndToEndWithoutErrors(string sampleName)
         {
             using var sample = SamplesHelper.GetSample(sampleName);
