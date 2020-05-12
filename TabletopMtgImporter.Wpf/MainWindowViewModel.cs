@@ -153,7 +153,7 @@ namespace TabletopMtgImporter.Wpf
                     
                     if (logger.ErrorCount > 0)
                     {
-                        Xceed.Wpf.Toolkit.MessageBox.Show(
+                        MessageBox.Show(
                             $"Failed to import '{deckInput!.Name}'. See output pane for details",
                             "Import finished",
                             MessageBoxButton.OK,
@@ -162,7 +162,7 @@ namespace TabletopMtgImporter.Wpf
                     }
                     else if (logger.WarningCount > 0)
                     {
-                        Xceed.Wpf.Toolkit.MessageBox.Show(
+                        MessageBox.Show(
                             $"Import of '{deckInput!.Name}' completed, but with warnings. See output pane for details",
                             "Import finished",
                             MessageBoxButton.OK,
@@ -171,7 +171,7 @@ namespace TabletopMtgImporter.Wpf
                     }
                     else
                     {
-                        Xceed.Wpf.Toolkit.MessageBox.Show($"Successfully imported '{deckInput!.Name}'!", "Import finished", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show($"Successfully imported '{deckInput!.Name}'!", "Import finished", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                 });
             });
