@@ -37,6 +37,7 @@ namespace TabletopMtgImporter
         {
             public string Name = default!;
             public Uri Uri = default!;
+            public string Component = default!;
         }
     }
 }

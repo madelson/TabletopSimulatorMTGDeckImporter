@@ -75,7 +75,8 @@ namespace TabletopMtgImporter
                     if (info != null)
                     {
                         cardInfo[card] = info;
-                        foreach (var relatedCard in info.RelatedCards ?? Enumerable.Empty<ScryfallCard.RelatedCard>())
+                        foreach (var relatedCard in (info.RelatedCards ?? Enumerable.Empty<ScryfallCard.RelatedCard>())
+                            .Where(rc => rc.Component != "combo_piece"))
                         {
                             var relatedInfo = await scryfallClient.GetJsonAsync<ScryfallCard>(relatedCard.Uri.AbsoluteUri).ConfigureAwait(false);
                             cardInfo[new DeckCard(relatedInfo.Name, set: relatedInfo.Set, collectorNumber: relatedInfo.CollectorNumber, isCommander: false)] = relatedInfo;
