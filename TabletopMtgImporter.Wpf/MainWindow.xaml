@@ -41,5 +41,8 @@
             </Button>
             <TextBox Text="{Binding OutputPaneText}" IsReadOnly="true" VerticalScrollBarVisibility="Visible" DockPanel.Dock="Bottom" />
         </DockPanel>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Panel.ZIndex="1" Background="Transparent" Margin="0 0 4 0">
+            <Hyperlink Command="{Binding HelpLinkCommand}">help</Hyperlink>
+        </TextBlock>
     </Grid>
 </Window>

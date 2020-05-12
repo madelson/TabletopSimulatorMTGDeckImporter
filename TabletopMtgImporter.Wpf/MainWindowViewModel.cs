@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -22,6 +23,8 @@ namespace TabletopMtgImporter.Wpf
 
         public ICommand SelectFileCommand { get; }
         public ICommand ImportCommand { get; }
+        public ICommand HelpLinkCommand { get; } = 
+            new DelegateCommand(_ => Process.Start("https://github.com/madelson/TabletopSimulatorMTGDeckImporter/blob/master/docs/instructions.md"));
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
