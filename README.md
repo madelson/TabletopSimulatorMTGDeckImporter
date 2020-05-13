@@ -8,4 +8,4 @@ It is designed for use with the [MTG Table for 4 Player EDH / Commander mod](htt
 
 You can download the latest binaries [here](https://github.com/madelson/TabletopSimulatorMTGDeckImporter/releases) (click "Assets" and choose either the GUI or the command line tool).
 
-See [the documentation](blob/master/docs/instructions.md) for instructions on usage.
+See [the documentation](docs/instructions.md) for instructions on usage.
