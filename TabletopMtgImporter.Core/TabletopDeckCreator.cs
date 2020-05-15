@@ -10,6 +10,8 @@ namespace TabletopMtgImporter
     {
         public static TabletopDeckObject CreateDeck(IReadOnlyList<DeckCard> cards, IReadOnlyDictionary<DeckCard, ScryfallCard> cardsAndRelatedCards)
         {
+            var mainDeckCards = cards.OrderByDescending(c => c.IsCommander)
+                .ToArray();
             var tokens = cardsAndRelatedCards.Keys.Except(cards)
                 .ToArray();
             var transformCards = cardsAndRelatedCards.Values.Where(c => c.Layout == "transform")
@@ -23,15 +25,15 @@ namespace TabletopMtgImporter
                     new TabletopDeckObject.ObjectState
                     {
                         Name = "DeckCustom",
-                        ContainedObjects = cards.Select((c, index) => new TabletopDeckObject.CardReference
+                        ContainedObjects = mainDeckCards.Select((c, index) => new TabletopDeckObject.CardReference
                             {
                                 CardId = ToId(index),
                                 Name = "Card",
                                 Nickname = c.Name,
                             })
                             .ToList(),
-                        DeckIds = Enumerable.Range(0, cards.Count).Select(ToId).ToList(),
-                        CustomDeck = cards.Select((c, index) => new { card = c, index })
+                        DeckIds = Enumerable.Range(0, mainDeckCards.Length).Select(ToId).ToList(),
+                        CustomDeck = mainDeckCards.Select((c, index) => new { card = c, index })
                             .ToDictionary(
                                 t => t.index + 1,
                                 t => new TabletopDeckObject.CardInfo

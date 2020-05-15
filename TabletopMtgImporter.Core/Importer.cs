@@ -54,6 +54,7 @@ namespace TabletopMtgImporter
                 }
 
                 var cardInfo = new Dictionary<DeckCard, ScryfallCard>();
+                var loadedRelatedCardNames = new HashSet<string>();
                 var scryfallClient = new ScryfallClient(this._logger);
                 var hasDownloadError = false;
                 foreach (var card in cards.Distinct())
@@ -78,8 +79,19 @@ namespace TabletopMtgImporter
                         foreach (var relatedCard in (info.RelatedCards ?? Enumerable.Empty<ScryfallCard.RelatedCard>())
                             .Where(rc => rc.Component != "combo_piece"))
                         {
-                            var relatedInfo = await scryfallClient.GetJsonAsync<ScryfallCard>(relatedCard.Uri.AbsoluteUri).ConfigureAwait(false);
-                            cardInfo[new DeckCard(relatedInfo.Name, set: relatedInfo.Set, collectorNumber: relatedInfo.CollectorNumber, isCommander: false)] = relatedInfo;
+                            if (loadedRelatedCardNames.Add(relatedCard.Name))
+                            {
+                                try
+                                {
+                                    var relatedInfo = await scryfallClient.GetJsonAsync<ScryfallCard>(relatedCard.Uri.AbsoluteUri).ConfigureAwait(false);
+                                    cardInfo[new DeckCard(relatedInfo.Name, set: relatedInfo.Set, collectorNumber: relatedInfo.CollectorNumber, isCommander: false)] = relatedInfo;
+                                }
+                                catch (Exception ex)
+                                {
+                                    this._logger.Warning($"Failed to download card '{relatedCard.Name}' related to '{info.Name}'");
+                                    this._logger.Debug($"Failed to download related card {relatedCard.Uri}. Detailed exception information: " + ex);
+                                }
+                            }
                         }
                     }
                 }
