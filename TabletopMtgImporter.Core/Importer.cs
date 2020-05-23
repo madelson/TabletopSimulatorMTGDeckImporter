@@ -54,7 +54,9 @@ namespace TabletopMtgImporter
                 }
 
                 var cardInfo = new Dictionary<DeckCard, ScryfallCard>();
-                var loadedRelatedCardNames = new HashSet<string>();
+                // This set allows us to avoid adding the same related card twice. We check based on Uri rather than name
+                // because tokens can have the same name but different identity (e. g. Soldier with lifelink vs. not)
+                var loadedRelatedCardUris = new HashSet<Uri>();
                 var scryfallClient = new ScryfallClient(this._logger);
                 var hasDownloadError = false;
                 foreach (var card in cards.Distinct())
@@ -79,7 +81,7 @@ namespace TabletopMtgImporter
                         foreach (var relatedCard in (info.RelatedCards ?? Enumerable.Empty<ScryfallCard.RelatedCard>())
                             .Where(rc => rc.Component != "combo_piece"))
                         {
-                            if (loadedRelatedCardNames.Add(relatedCard.Name))
+                            if (loadedRelatedCardUris.Add(relatedCard.Uri))
                             {
                                 try
                                 {

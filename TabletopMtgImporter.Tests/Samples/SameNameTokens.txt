@@ -1,0 +1,74 @@
+﻿1x Auriok Champion (ima)
+1x Bishop of Rebirth (xln)
+1x Legion's Landing // Adanto, the First Fort (xln) `Ramp` 
+1x Mavren Fein, Dusk Apostle (xln)
+1x Conqueror's Galleon // Conqueror's Foothold (xln) `Ramp` 
+1x Treasure Map // Treasure Cove (xln) `Draw` 
+1x Armory Automaton (c16)
+1x Wave of Reckoning (c16) `Utility` 
+1x Fumigate (kld) `Utility` 
+1x Custodi Soulcaller (cn2)
+1x Protector of the Crown (cn2) `Draw` 
+1x Pariah (cn2) `Utility` 
+1x Captain's Claws (ogw)
+1x Explorer's Scope (ddp) `Ramp` 
+1x Hidden Dragonslayer (dtk) `Utility` 
+1x Karoo (c14)
+1x Preeminent Captain (m15)
+1x Brimaz, King of Oreskos (bng)
+1x Palisade Giant (rtr)
+1x Hero of Bladehold (mbs)
+1x Patrol Signaler (eve)
+1x Order of Whiteclay (shm)
+1x Militia's Pride (lrw) `Creature` 
+1x Weathered Bodyguards (tsp)
+1x Pariah's Shield (rav)
+1x Rune-Tail, Kitsune Ascendant // Rune-Tail's Essence (sok) `Commander` 
+1x Patron of the Kitsune (bok)
+1x Pianna, Nomad Captain (ody)
+1x Oath of Lieges (exo) `Ramp` 
+29x Plains (mir) 334
+1x Detection Tower (m19)
+1x Sigiled Sword of Valeron (m19)
+1x Remorseful Cleric (m19) `Utility` 
+1x Mentor of the Meek (m19) `Draw` 
+1x Leonin Warleader (m19)
+1x Pristine Talisman (cm2) `Ramp` 
+1x Buried Ruin (c18)
+1x Isolated Watchtower (c18)
+1x Endless Atlas (c18) `Draw` 
+1x Militant Angel (gnt)
+1x Haazda Marshal (grn)
+1x Dawn of Hope (grn) `Draw` 
+1x Mistveil Plains (uma)
+1x Generous Gift (mh1) `Utility` 
+1x Angelic Guardian (m20)
+1x Heraldic Banner (eld) `Ramp` 
+1x Silverwing Squadron (eld)
+1x Linden, the Steadfast Queen (eld)
+1x Hushbringer (eld)
+1x Arch of Orazca (mb1)
+1x Sword of the Animist (mb1) `Ramp` 
+1x Loxodon Warhammer (mb1)
+1x Basilisk Collar (mb1)
+1x Swords to Plowshares (mb1) `Utility` 
+1x Palace Sentinels (mb1) `Draw` 
+1x Danitha Capashen, Paragon (mb1)
+1x Taranika, Akroan Veteran (thb)
+1x Shadowspear (thb)
+1x Heliod's Intervention (thb) `Utility` 
+1x Verge Rangers (c20) `Ramp` 
+1x Sol Ring (c20) `Ramp` 
+1x Cartographer's Hawk (c20) `Ramp` 
+1x Trynn, Champion of Freedom (c20)
+1x Avenging Huntbonder (c20)
+1x Sun Titan (c20)
+1x Odric, Master Tactician (c20)
+1x Frontline Medic (c20)
+1x Windbrisk Heights (c20)
+1x Scavenger Grounds (c20)
+1x Desert of the True (c20)
+1x Swiftfoot Boots (c20)
+1x Lightning Greaves (c20)
+1x Auriok Steelshaper (mrd) `Maybeboard` 
+1x Dolmen Gate (lrw) `Maybeboard` 
