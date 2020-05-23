@@ -19,4 +19,8 @@
     <EmbeddedResource Include="Samples\**\*" />
   </ItemGroup>
   
+  <ItemGroup>
+    <None Remove="Samples\Archidekt1xCardNameCodeCategoryLabelWithFoils.txt" />
+  </ItemGroup>
+  
 </Project>

@@ -85,18 +85,20 @@ namespace TabletopMtgImporter
         private static DeckCard[]? TryParseLineArchidekt1xCardNameCodeCategoryLabel(string line)
         {
             var match = Regex.Match(
-                line, 
+                line,
                 @"^
                     # card frequency
-                    (?<count>\d+)x\s+
+                    (?<count>\d+)x
                     # card name. Disallow characters used to delimit the following sections as well as trailing whitespace
-                    (?<name>[^\s\(`^]+(\s+[^\s\(`^]+)*)
+                    \s+(?<name>[^\s\(`^]+(\s+[^\s\(`^]+)*)
                     # set and optionally collector number
-                    (\s\((?<set>\w+)\)(\s(?<collectorNumber>\d+[a-zA-Z]?))?)?
+                    (\s+\((?<set>\w+)\)(\s(?<collectorNumber>\d+[a-zA-Z]?))?)?
+                    # optional foil marker
+                    (\s+\*F\*)?
                     # category
-                    (\s`(?<category>[^`]+)`)?
+                    (\s+`(?<category>[^`]+)`)?
                     # label
-                    (\s\^(?<label>[^\^]+)\^)?\s*
+                    (\s+\^(?<label>[^\^]+)\^)?\s*
                 $",
                 RegexOptions.ExplicitCapture | RegexOptions.IgnorePatternWhitespace
             );

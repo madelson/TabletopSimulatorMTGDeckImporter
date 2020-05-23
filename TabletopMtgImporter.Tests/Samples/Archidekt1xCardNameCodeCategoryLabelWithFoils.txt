@@ -1,0 +1,81 @@
+﻿1x Arvad the Cursed (dom) `Legends` 
+1x Isolated Chapel (dom)
+1x Karn, Scion of Urza (dom) `Draw` 
+1x On Serra's Wings (dom) `Legends` 
+1x Rhonas the Indomitable (akh) `Legends` 
+1x Obzedat, Ghost Council (mm3) `Legends` 
+1x Consulate Crackdown (aer) `Utility` 
+1x Rishkar's Expertise (aer) `Draw` 
+1x Heart of Kiran (aer) `Legends` 
+1x Selvala, Explorer Returned (c16) `Ramp` 
+1x Live Fast (kld) `Draw` 
+1x Nissa, Vital Force (kld) `Draw` 
+1x Oviya Pashiri, Sage Lifecrafter (kld) `Legends` 
+1x Kambal, Consul of Allocation (kld) `Legends` 
+1x Skysovereign, Consul Flagship (kld) `Utility` 
+1x Concealed Courtyard (kld)
+1x Thalia, Heretic Cathar (emn) `Legends` 
+1x Anguished Unmaking (soi) `Utility` 
+1x Fortified Village (soi)
+1x Karlov of the Ghost Council (c15) `Legends` 
+1x Teysa, Envoy of Ghosts (c15) `Legends` 
+1x Daghatar the Adamant (frf) `Legends` 
+1x Benevolent Offering (c14) `Utility` 
+1x Abzan Banner (ktk) `Ramp` 
+1x Magister of Worth (cns) `Utility` 
+1x Peregrination (bng) `Ramp` 
+1x Seek the Horizon (rtr) `Ramp` 
+8x Forest (ddj) 90
+1x Elspeth Tirel (som) `Legends` 
+1x Pendelhaven (tsb)
+1x Putrefy (rav) `Utility` 
+8x Plains (rav) 289
+1x Eiganjo Castle (chk)
+1x Sandsteppe Citadel (prm) *F* 
+1x Chainer, Dementia Master (tor) `Legends` 
+1x Elfhame Palace (inv)
+1x Exile (6ed) `Utility` 
+1x Reprisal (6ed) `Utility` 
+1x Swords to Plowshares (ath) `Utility` 
+1x Autumn Willow (hml) `Legends` 
+1x Tormod's Crypt (drk) `Utility` 
+1x Blessed Light (dom) `Utility` 
+1x Mentor of the Meek (m19) `Draw` 
+1x Reyhan, Last of the Abzan (cm2) *F*  `Legends` 
+1x Bountiful Promenade (bbd)
+8x Swamp (c18) 300
+1x Forsaken Sanctuary (c18)
+1x Gideon of the Trials (ps18) *F*  `Legends` 
+1x Temple Garden (grn)
+1x Overgrown Tomb (grn)
+1x Knight of Autumn (grn) `Utility` 
+1x Vraska, Golgari Queen (med) *F*  `Legends` 
+1x Circuitous Route (grn) `Ramp` 
+1x Jarad, Golgari Lich Lord (gk1) `Legends` 
+1x Kitchen Finks (uma) `Utility` 
+1x Godless Shrine (rna)
+1x Kaya, Orzhov Usurper (rna) `Utility` 
+1x Teysa Karlov (rna) `Legends` 
+1x Rampage of the Clans (rna) `Utility` 
+1x Ethereal Absolution (rna) `Utility` 
+1x Bolas's Citadel (war) `Draw` 
+1x Orzhov Guildgate (war)
+1x God-Eternal Bontu (war) `Draw` 
+1x Gideon Blackblade (med) *F*  `Legends` 
+1x Kethis, the Hidden Hand (m20) `Commander` 
+1x Ayara, First of Locthwain (eld) `Draw` 
+1x Linden, the Steadfast Queen (eld) `Legends` 
+1x Farseek (mb1) `Ramp` 
+1x Birds of Paradise (mb1) `Ramp` 
+1x Danitha Capashen, Paragon (mb1) `Legends` 
+1x Ajani, the Greathearted (psld) *F*  `Legends` 
+1x Captain Sisay (sld) *F*  `Draw` 
+1x Thalia, Guardian of Thraben (sld) *F*  `Legends` 
+1x Jiang Yanggu, Wildcrafter (prm) `Ramp` 
+1x Command Tower (c20)
+1x Orzhov Basilica (c20)
+1x Gavony Township (c20)
+1x Solemn Simulacrum (c20) `Ramp` 
+1x Deathsprout (c20) `Ramp` 
+1x Hall of Triumph (thp3) *F*  `Maybeboard` 
+1x The Chain Veil (m15) `Maybeboard` 
