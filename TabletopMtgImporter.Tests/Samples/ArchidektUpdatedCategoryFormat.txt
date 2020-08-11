@@ -1,0 +1,88 @@
+1x Phyrexian Scriptures (dom) [Synergy] 
+1x Sulfur Falls (dom)
+1x Mer-Ek Nightblade (ima) [Synergy] 
+1x Herald of Secret Streams (xln) [Synergy] 
+1x Dragonskull Summit (xln)
+1x Drowned Catacomb (xln)
+1x Patron of the Vein (c17) [Always Counters] 
+1x Marchesa, the Black Rose (c17) [Commander{top}] 
+1x Talisman of Dominance (e01) [Ramp] 
+1x Talisman of Indulgence (e01) [Ramp] 
+1x Scalding Tarn (mm3)
+1x Yahenni, Undying Partisan (aer) [Sac Outlet] 
+1x Animation Module (kld) [Synergy] 
+1x Vandalblast (c15) [Utility] 
+1x Smothering Abomination (bfz) [Synergy] 
+1x Vampiric Rites (bfz) [Sac Outlet] 
+1x Novijen Sages (mm2) [Always Counters] 
+1x Bloodstained Mire (ktk)
+1x Polluted Delta (ktk)
+1x Feast on the Fallen (m15) [Give Counters] 
+1x Geralf's Mindcrusher (dka) [Always Counters] 
+1x Undying Evil (dka) [Give Counters] 
+1x Pyreheart Wolf (dka) [Always Counters] 
+1x Grimgrin, Corpse-Born (isd) [Sac Outlet] 
+1x Tar Fiend (ala) [Sac Outlet] 
+1x Caldera Hellion (ala) [Sac Outlet] 
+1x Stingmoggie (mor) [Always Counters] 
+1x Cytoplast Manipulator (dis) [Always Counters] 
+1x Unspeakable Symbol (scg) [Give Counters] 
+1x Entrails Feaster (ons) [Sometimes Counters] 
+1x Mindwarper (sth) [Always Counters] 
+1x Spitting Hydra (sth) [Always Counters] 
+1x Magmasaur (tmp) [Always Counters] 
+4x Island (mir) 338
+6x Swamp (mir) 342
+5x Mountain (mir) 344
+1x Wayfarer's Bauble (cm2) [Ramp] 
+1x Fellwar Stone (cm2) [Ramp] 
+1x Bloodtracker (c18) [Synergy] 
+1x Watery Grave (grn)
+1x Steam Vents (grn)
+1x Dimir Signet (gk1) [Ramp] 
+1x Bloodflow Connoisseur (uma) [Sac Outlet] 
+1x Blood Crypt (rna)
+1x Skarrgan Hellkite (rna) [Always Counters] 
+1x Skatewing Spy (rna) [Synergy] 
+1x Clamor Shaman (rna) [Always Counters] 
+1x Teferi's Time Twist (war) [Give Counters] 
+1x Spark Double (war) [Always Counters] 
+1x Talisman of Creativity (mh1) [Ramp] 
+1x Embodiment of Agonies (m20) [Always Counters] 
+1x Scroll of Fate (c19) [Synergy] 
+1x Thought Sponge (c19) [Always Counters] 
+1x Grim Haruspex (c19) [Synergy] 
+1x Flayer of the Hatebound (c19) [Always Counters] 
+1x Crumbling Necropolis (mb1)
+1x Burnished Hart (mb1) [Ramp] 
+1x Ashnod's Altar (mb1) [Sac Outlet] 
+1x Preyseizer Dragon (mb1) [Sac Outlet] 
+1x Mark of Mutiny (mb1) [Synergy] 
+1x Goblin Bombardment (mb1) [Sac Outlet] 
+1x Living Death (mb1) [Synergy] 
+1x Dictate of Erebos (mb1) [Synergy] 
+1x Carrion Feeder (mb1) [Sac Outlet] 
+1x Vigean Graftmage (mb1) [Always Counters] 
+1x Arcane Signet (c20) [Ramp] 
+1x Agitator Ant (c20) [Give Counters] 
+1x Command Tower (c20)
+1x Sol Ring (c20) [Ramp] 
+1x The Ozolith (iko) [Synergy] 
+1x Rakdos Carnarium (c20)
+1x Izzet Boilerworks (c20)
+1x Exotic Orchard (c20)
+1x Dimir Aqueduct (c20)
+1x Bojuka Bog (c20)
+1x Skullclamp (c20) [Synergy] 
+1x Rakdos Signet (c20) [Ramp] 
+1x Izzet Signet (c20) [Ramp] 
+1x Chaos Warp (c20) [Utility] 
+1x Solemn Simulacrum (m21) [Ramp] 
+1x Phyrexian Tower (jmp)
+1x Unstable Obelisk (jmp) [Ramp] 
+1x Oona's Blackguard (jmp) [Synergy] 
+1x Blasphemous Act (2xm) [Synergy] 
+1x Sunken Ruins (2xm)
+1x Graven Cairns (2xm)
+1x High Market (2xm)
+1x Cascade Bluffs (2xm)

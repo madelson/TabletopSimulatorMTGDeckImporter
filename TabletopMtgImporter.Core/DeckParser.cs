@@ -95,8 +95,8 @@ namespace TabletopMtgImporter
                     (\s+\((?<set>\w+)\)(\s(?<collectorNumber>\d+[a-zA-Z]?))?)?
                     # optional foil marker
                     (\s+\*F\*)?
-                    # category
-                    (\s+`(?<category>[^`]+)`)?
+                    # category [x{a}{b}...] (new format) or `x` (old format)
+                    (\s+[\[`](?<category>[^`\{\]]+)(\{.*?\})*[\]`])?
                     # label
                     (\s+\^(?<label>[^\^]+)\^)?\s*
                 $",

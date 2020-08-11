@@ -12,12 +12,14 @@ namespace TabletopMtgImporter.Tests
 {
     public class EndToEndTest
     {
-        [TestCase("Archidekt1CardNameFormat.txt", ExpectedResult = "count=107,hash=7PEsdf5KnAN+LLwFv5dn1g==")]
-        [TestCase("Archidekt1xCardNameCodeCategoryLabel.txt", ExpectedResult = "count=104,hash=0ouYK2tXro2mNv0xkoB6Cg==")]
+        [TestCase("Archidekt1CardNameFormat.txt", ExpectedResult = "count=108,hash=1Tn1wG0GoooaY2MmHwvB2g==")]
+        [TestCase("Archidekt1xCardNameCodeCategoryLabel.txt", ExpectedResult = "count=105,hash=6dg6IPECMxAOVUuKFcR8yQ==")]
         [TestCase("MaybeboardAndAlternateArtCollectorNumber.txt", ExpectedResult = "count=108,hash=zHg9fZWqNKk6wlJmoLBu0w==")]
         [TestCase("ComboPieceRelatedCards.txt", ExpectedResult = "count=115,hash=hthbJgpnr1Ul4CI3x8cB7A==")]
         [TestCase("Foils.txt", ExpectedResult = "count=107,hash=6ihzVsB60rC39ZlEJSTIsA==")]
         [TestCase("SameNameTokens.txt", ExpectedResult = "count=115,hash=hthbJgpnr1Ul4CI3x8cB7A==")]
+        [TestCase("ArchidektUpdatedCategoryFormat.txt", ExpectedResult = "count=101,hash=B+6eJzK8ihFObkI/htreeg==")]
+        [TestCase("ArchidektUpdatedCategoryFormatMultipleCommanders.txt", ExpectedResult = "count=103,hash=jzAhbtVejcFgDWWJOzKFHw==")]
         public async Task<string> TestRunsEndToEndWithoutErrors(string sampleName)
         {
             using var sample = SamplesHelper.GetSample(sampleName);

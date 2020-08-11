@@ -1,0 +1,92 @@
+1x Firefist Adept (dom) [Value Wizards] 
+1x Naban, Dean of Iteration (dom) [Synergy] 
+1x Sulfur Falls (dom)
+1x Whisper, Blood Liturgist (dom) [Sac Outlets] 
+1x Shadowmage Infiltrator (a25) [Draw] 
+1x River of Tears (ima)
+1x Dragonskull Summit (xln)
+1x Drowned Catacomb (xln)
+1x Curse of Verbosity (c17) [Draw] 
+1x Bloodline Necromancer (c17) [Value Wizards] 
+1x Vindictive Lich (c17) [Value Wizards] 
+1x Inalla, Archmage Ritualist (c17) *F*  [Commander{top}] 
+1x Necromantic Selection (c17) [Utility] 
+1x Puppeteer Clique (c17) [Temp Creatures] 
+1x Havengul Lich (c17) [Value Wizards] 
+1x Talisman of Dominance (e01) [Ramp] 
+1x Talisman of Indulgence (e01) [Ramp] 
+1x Venser, Shaper Savant (mm3) [Value Wizards] 
+1x Flameshadow Conjuring (ori) [Temp Creatures] 
+1x Flesh Carver (c14) [Sac Outlets] 
+1x Galvanic Juggernaut (cns) [Untap] 
+1x Viscera Seer (c13) [Sac Outlets] 
+1x Beguiler of Wills (dka) [Value Wizards] 
+1x Attrition (cmd) [Sac Outlets] 
+1x Anathemancer (arb) [Value Wizards] 
+1x Fatestitcher (ala) [Untap] 
+1x Stonybrook Banneret (mor) [Ramp] 
+1x Rakdos Riteknife (dis) [Commander{top}] 
+1x Spawnbroker (rav) [Value Wizards] 
+1x Faces of the Past (scg) [Untap] 
+1x Aphetto Alchemist (ons) [Untap] 
+1x Goblin Sharpshooter (ons) [Untap] 
+1x Stern Proctor (usg) [Value Wizards] 
+1x Coffin Queen (tmp) [Temp Creatures] 
+7x Island (mir) 338
+7x Swamp (mir) 342
+6x Mountain (mir) 344
+1x Grip of Phyresis (cm2) [Utility] 
+1x Sower of Temptation (bbd) [Temp Creatures] 
+1x Watery Grave (grn)
+1x Steam Vents (grn)
+1x Dimir Signet (gk1) [Ramp] 
+1x Apprentice Necromancer (uma) [Temp Creatures] 
+1x Blood Crypt (rna)
+1x Talisman of Creativity (mh1) [Ramp] 
+1x Watcher for Tomorrow (mh1) [Draw] 
+1x Graveshifter (mh1) [Value Wizards] 
+1x Grim Haruspex (c19) [Draw] 
+1x Crumbling Necropolis (mb1)
+1x Crosis's Charm (mb1) [Utility] 
+1x Purphoros, God of the Forge (mb1) [Synergy] 
+1x Impact Tremors (mb1) [Synergy] 
+1x Curse of Opulence (mb1) [Ramp] 
+1x Youthful Scholar (mb1) [Draw] 
+1x Cloudkin Seer (mb1) [Draw] 
+1x The Akroan War (thb) [Temp Creatures] 
+1x Thassa, Deep-Dwelling (thb) [Synergy] 
+1x Soul-Guide Lantern (thb) [Utility] 
+1x Arcane Signet (c20) [Ramp] 
+1x Molten Echoes (c20) [Temp Creatures] 
+1x Path of Ancestry (c20)
+1x Titan Hunter (c20) [Sac Outlets] 
+1x Command Tower (c20)
+1x Sol Ring (c20) [Ramp] 
+1x Rakdos Carnarium (c20)
+1x Izzet Boilerworks (c20)
+1x Exotic Orchard (c20)
+1x Dimir Aqueduct (c20)
+1x Bojuka Bog (c20)
+1x Skullclamp (c20) [Draw] 
+1x Swiftfoot Boots (c20) [Synergy] 
+1x Rakdos Signet (c20) [Ramp] 
+1x Izzet Signet (c20) [Ramp] 
+1x Lightning Greaves (c20) [Synergy] 
+1x Xathrid Necromancer (c20) [Value Wizards] 
+1x Disciple of Bolas (c20) [Draw] 
+1x Portal Mage (c20) [Value Wizards] 
+1x Fabled Passage (m21)
+1x Thriving Moor (jmp)
+1x Kels, Fight Fixer (jmp) [Sac Outlets] 
+1x Sea Gate Oracle (jmp) [Draw] 
+1x Riptide Laboratory (jmp)
+1x Dualcaster Mage (jmp) [Value Wizards] 
+1x Wayfarer's Bauble (cm2) [Maybeboard{noDeck}{noPrice}] 
+1x Dictate of Erebos (mb1) [Maybeboard{noDeck}{noPrice}] 
+1x Master of Waves (ths) [Maybeboard{noDeck}{noPrice}] 
+1x Mirror March (rna) [Maybeboard{noDeck}{noPrice}] 
+1x Thoughtpicker Witch (rav) [Maybeboard{noDeck}{noPrice}] 
+1x Tribute Mage (mh1) [Maybeboard{noDeck}{noPrice}] 
+1x Keeper of the Dead (exo) [Maybeboard{noDeck}{noPrice}] 
+1x Silumgar Sorcerer (dtk) [Maybeboard{noDeck}{noPrice}] 
+1x Jeleva, Nephalia's Scourge (c13) [Maybeboard{noDeck}{noPrice}] 
