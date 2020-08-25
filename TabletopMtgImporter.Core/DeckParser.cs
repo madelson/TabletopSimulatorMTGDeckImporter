@@ -126,7 +126,6 @@ namespace TabletopMtgImporter
                 var result = new DeckCard[count];
                 for (var i = 0; i < count; ++i)
                 {
-
                     // in this format, we don't know the set or whether the card is a commander
                     result[i] = new DeckCard(match.Groups["name"].Value, set: set, collectorNumber: collectorNumber, isCommander: isCommander);
                 }

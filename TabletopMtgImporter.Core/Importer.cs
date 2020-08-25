@@ -35,7 +35,8 @@ namespace TabletopMtgImporter
                         var errorBuilder = new StringBuilder();
                         errorBuilder.AppendLine($"Some lines could not be parsed. Make sure each line follows one of the supported formats.")
                             .AppendLine("* 1 CardName format: '<count> <card name>'")
-                            .AppendLine("* 1x CardName with metadata format: <count>x <card name> [(<set>)[ <collector number>]] [`<category>`]")
+                            .AppendLine("* 1x CardName with metadata format: '<count>x <card name> [(<set>)[ <collector number>]] [`<category>`]' (categories may alternatively be surrounded with square brackets [] instead of backticks ``)")
+                            .AppendLine("Visit https://github.com/madelson/TabletopSimulatorMTGDeckImporter/blob/master/docs/instructions.md for more information.")
                             .AppendLine("Invalid lines:");
                         foreach (var errorLine in errorLines)
                         {

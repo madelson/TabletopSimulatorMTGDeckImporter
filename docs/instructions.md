@@ -32,7 +32,9 @@ For example:
 
 If the set/collector number are specified, the import tool will use this to determine which artwork is imported. If the category is "Maybeboard", the importer will not include the card in the deck.
 
-You can export this format from Archidekt by clicking "Export" on your deck page and choosing the "1x Card Name (code)..." format. Alternatively, you can click "Edit" and copy-paste the content from there.
+You can export this format from Archidekt by clicking "Export" on your deck page and choosing the "1x Card Name (code)..." format (this feature is currently broken on Archidekt; see https://archidekt.com/forum/thread/714914/1). Alternatively, you can click "Edit" and copy-paste the content from there.
+
+Note that as of ~2020-08-11 Archidekt changed the edit panel format to use square brackets instead of backticks for categories. Version 0.3+ of the importer support this variant.
 
 # Using the GUI
 
