@@ -51,7 +51,7 @@ namespace TabletopMtgImporter
 
                 if (cards.Count != 100)
                 {
-                    this._logger.Warning($"WARNING: deck file contains {cards.Count} cards");
+                    this._logger.Warning($"WARNING: deck contains {cards.Count} card{(cards.Count == 1 ? string.Empty : "s")}");
                 }
 
                 var cardInfo = new Dictionary<DeckCard, ScryfallCard>();
@@ -80,7 +80,7 @@ namespace TabletopMtgImporter
                     {
                         cardInfo[card] = info;
                         foreach (var relatedCard in (info.RelatedCards ?? Enumerable.Empty<ScryfallCard.RelatedCard>())
-                            .Where(rc => rc.Component != "combo_piece"))
+                            .Where(rc => rc.Component != "combo_piece" || rc.Name.EndsWith("Emblem", StringComparison.Ordinal)))
                         {
                             if (loadedRelatedCardUris.Add(relatedCard.Uri))
                             {

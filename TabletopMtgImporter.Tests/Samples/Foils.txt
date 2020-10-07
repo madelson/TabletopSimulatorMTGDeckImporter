@@ -68,7 +68,7 @@
 1x Farseek (mb1) `Ramp` 
 1x Birds of Paradise (mb1) `Ramp` 
 1x Danitha Capashen, Paragon (mb1) `Legends` 
-1x Ajani, the Greathearted (psld) *F*  `Legends` 
+1x Ajani, the Greathearted (sld) *F*  `Legends` 
 1x Captain Sisay (sld) *F*  `Draw` 
 1x Thalia, Guardian of Thraben (sld) *F*  `Legends` 
 1x Jiang Yanggu, Wildcrafter (prm) `Ramp` 

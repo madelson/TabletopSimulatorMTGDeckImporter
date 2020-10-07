@@ -16,7 +16,7 @@ namespace TabletopMtgImporter.Tests
         [TestCase("Archidekt1xCardNameCodeCategoryLabel.txt", ExpectedResult = "count=105,hash=6dg6IPECMxAOVUuKFcR8yQ==")]
         [TestCase("MaybeboardAndAlternateArtCollectorNumber.txt", ExpectedResult = "count=108,hash=zHg9fZWqNKk6wlJmoLBu0w==")]
         [TestCase("ComboPieceRelatedCards.txt", ExpectedResult = "count=115,hash=hthbJgpnr1Ul4CI3x8cB7A==")]
-        [TestCase("Foils.txt", ExpectedResult = "count=107,hash=6ihzVsB60rC39ZlEJSTIsA==")]
+        [TestCase("Foils.txt", ExpectedResult = "count=109,hash=hSS2IV3TkyYBo3S1zHTUnw==")]
         [TestCase("SameNameTokens.txt", ExpectedResult = "count=115,hash=hthbJgpnr1Ul4CI3x8cB7A==")]
         [TestCase("ArchidektUpdatedCategoryFormat.txt", ExpectedResult = "count=101,hash=B+6eJzK8ihFObkI/htreeg==")]
         [TestCase("ArchidektUpdatedCategoryFormatMultipleCommanders.txt", ExpectedResult = "count=103,hash=jzAhbtVejcFgDWWJOzKFHw==")]
@@ -45,6 +45,46 @@ namespace TabletopMtgImporter.Tests
             using var md5 = MD5.Create();
             var hash = md5.ComputeHash(Encoding.UTF8.GetBytes(hashInput));
             return $"count={cardCount},hash={Convert.ToBase64String(hash)}";
+        }
+
+        [TestCase("1x Chandra, Awakened Inferno")]
+        [TestCase("1x Gideon of the Trials")]
+        public async Task TestPlaneswalkerEmblems(string card)
+        {
+            var imported = await this.ImportDeckAsync(card);
+            var cardName = imported.ObjectStates[0].ContainedObjects.Single().Nickname;
+            CollectionAssert.AreEquivalent(new[] { cardName + " Emblem" }, imported.ObjectStates[1].ContainedObjects.Select(o => o.Nickname));
+        }
+
+        [TestCase("1x Ondu Inversion // Ondu Skyruins")]
+        [TestCase("1x Branchloft Pathway // Boulderloft Pathway")]
+        public async Task TestModalDoubleFacedCards(string card)
+        {
+            var imported = await this.ImportDeckAsync(card);
+            var cardName = imported.ObjectStates[0].ContainedObjects.Single().Nickname;
+            CollectionAssert.AreEquivalent(new[] { cardName }, imported.ObjectStates[2].ContainedObjects.Select(o => o.Nickname));
+        }
+
+        private async Task<TabletopDeckObject> ImportDeckAsync(params string[] cards)
+        {
+            var testLogger = new TestLogger();
+            var importer = new Importer(testLogger, TestConfiguration.Configuration);
+            var deckInput = new StringDeckInput { Text = string.Join(Environment.NewLine, cards) };
+            Assert.IsTrue(await importer.TryImportAsync(deckInput));
+            Assert.IsEmpty(testLogger.ErrorLines);
+            Assert.AreEqual(1, testLogger.WarningLines.Count, message: string.Join(Environment.NewLine, testLogger.WarningLines));
+            Assert.That(testLogger.WarningLines[0], Does.Match(@"^WARNING: deck contains \d+ card"));
+            var outputText = File.ReadAllText(Path.Combine(TestConfiguration.Configuration.OutputDirectory, Path.GetFileNameWithoutExtension(deckInput.Name) + ".json"));
+            return JsonConvert.DeserializeObject<TabletopDeckObject>(outputText);
+        }
+
+        private class StringDeckInput : IDeckInput
+        {
+            public string Text { get; set; }
+
+            public string Name { get; } = $"TestDeck{Guid.NewGuid():n}";
+
+            public TextReader OpenReader() => new StringReader(this.Text);
         }
     }
 }
