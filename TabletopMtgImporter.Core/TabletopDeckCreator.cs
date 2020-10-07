@@ -14,7 +14,7 @@ namespace TabletopMtgImporter
                 .ToArray();
             var tokens = cardsAndRelatedCards.Keys.Except(cards)
                 .ToArray();
-            var transformCards = cardsAndRelatedCards.Values.Where(c => c.Layout == "transform")
+            var doubleFacedCards = cardsAndRelatedCards.Values.Where(c => c.Layout == "transform" || c.Layout == "modal_dfc")
                 .ToArray();
 
             var deck = new TabletopDeckObject
@@ -67,19 +67,19 @@ namespace TabletopMtgImporter
                         Transform = { PosX = 2.2, RotZ = 0 },
                     },
 
-                    // flip cards
+                    // double-face cards
                     new TabletopDeckObject.ObjectState
                     {
                         Name = "DeckCustom",
-                        ContainedObjects = transformCards.Select((c, index) => new TabletopDeckObject.CardReference
+                        ContainedObjects = doubleFacedCards.Select((c, index) => new TabletopDeckObject.CardReference
                             {
                                 CardId = ToId(index),
                                 Name = "Card",
                                 Nickname = c.Name,
                             })
                             .ToList(),
-                        DeckIds = Enumerable.Range(0, transformCards.Length).Select(ToId).ToList(),
-                        CustomDeck = transformCards.Select((c, index) => new { card = c, index })
+                        DeckIds = Enumerable.Range(0, doubleFacedCards.Length).Select(ToId).ToList(),
+                        CustomDeck = doubleFacedCards.Select((c, index) => new { card = c, index })
                             .ToDictionary(
                                 t => t.index + 1,
                                 t => new TabletopDeckObject.CardInfo
