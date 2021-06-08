@@ -6,7 +6,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [ master ]
-	
+
 jobs:
   deploy-to-github-pages:
     # use ubuntu-latest image to run steps on
@@ -31,4 +31,3 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         BRANCH: gh-pages
         FOLDER: release/wwwroot
-	
