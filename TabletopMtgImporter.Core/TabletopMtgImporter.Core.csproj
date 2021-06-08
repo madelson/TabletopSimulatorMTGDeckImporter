@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net461</TargetFramework>
+    <TargetFrameworks>net461;netstandard2.0</TargetFrameworks>
     <RootNamespace>TabletopMtgImporter</RootNamespace>
     <LangVersion>8.0</LangVersion>
     <Nullable>enable</Nullable>
@@ -16,6 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http" Condition="'$(TargetFramework)' == 'net461'" />
   </ItemGroup>
 </Project>
