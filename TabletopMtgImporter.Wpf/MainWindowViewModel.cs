@@ -140,7 +140,7 @@ namespace TabletopMtgImporter.Wpf
 
             this.OutputPaneText = string.Empty;
             var logger = new WpfLogger(s => Application.Current.Dispatcher.Invoke(() => this.OutputPaneText += s + Environment.NewLine));
-            var importer = new Importer(logger, new Configuration());
+            var importer = new Importer(logger, new DiskCache(), new DiskSaver(logger));
             this.IsImporting = true;
             var importTask = Task.Run(() => importer.TryImportAsync(deckInput!));
             importTask.ContinueWith(t =>
