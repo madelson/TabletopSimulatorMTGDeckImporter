@@ -1,7 +1,137 @@
 ﻿@page "/"
+@inject IJSRuntime JSRuntime;
 
-<h1>Hello, world!</h1>
+    <div class="container mw-100">
+        <div class="row">
+            <div class="col-sm w-50">
+                <div>
+                    <span>Deck list</span>
+                    @* note: empty href gives link styling *@
+                    <a @onclick="this.ToggleDeckListHelpText" class="ml-1" style="vertical-align: middle; font-size: 0.7rem" href="">help</a>
+                </div>
+                @if (this.ShowDeckListHelpText)
+                {
+                    <div class="my-1" style="font-size: 0.7rem; color:gray">
+                        This tool is easiest to use with <a href="https://archidekt.com">Architedekt</a>. 
+                        <br /><br />
+                        When viewing your deck, click the "Edit" button on the left sidebar, then copy the contents into the text box below.
+                        <br /><br />
+                        When viewing someone else's deck, you can click the "Export" button on the left sidebar, choose "Text" and the "1x Card Name (code) *F* [Category] ^Label,#000000^" 
+                        format. Click the "Download" button, then copy the contents of the downloaded file into the text box below.
+                        <br /><br />
+                        For more, check out <a href="https://github.com/madelson/TabletopSimulatorMTGDeckImporter/blob/master/docs/instructions.md">the documentation</a>.
+                    </div>
+                }
+                <textarea @bind="this.DeckText" @bind:event="oninput" class="mb-1 w-100" style="height: 30em;" />
 
-Welcome to your new app.
+                <div>Deck name</div>
+                <input id="deckName" type="text" @bind="this.DeckName" @bind:event="oninput" placeholder="@this.DefaultDeckName" class="w-100" />
+            </div>
+            <div class="col-sm w-50">
+                <div class="mb-1">
+                    @{
+                        var importDisabledReason = this.Status == ImportStatus.InProgress ? "Import in progress"
+                            : string.IsNullOrWhiteSpace(this.DeckText) ? "Please enter a deck"
+                            : null;
+                    }
+                    <button @onclick="@this.Import"
+                            disabled="@(importDisabledReason != null)"
+                            title="@importDisabledReason"
+                            type="button"
+                            class="btn btn-primary w-25">
+                        Import
+                    </button>
+                    @{
+                        var statusMessageColor = this.Status switch
+                        {
+                            ImportStatus.None => "black",
+                            ImportStatus.InProgress => "black",
+                            ImportStatus.Succeeded => "green",
+                            ImportStatus.Failed => "red",
+                            _ => throw new InvalidOperationException(this.Status.ToString())
+                        };
+                    }
+                    <span class="ml-4" style="color: @statusMessageColor; vertical-align: middle">@this.StatusMessage</span>
+                </div>
+                <div class="my-1" style="font-size: 0.7rem; color:gray">
+                    After importing, move the downloaded file to "%USERPROFILE%\Documents\My Games\Tabletop Simulator\Saves\Saved Objects".
+                </div>
+                <div style="height: 30em;
+                            background-color: black;
+                            font-weight: bold;
+                            font-family: consolas;
+                            overflow-wrap: break-word;
+                            overflow-y: auto;
+                ">
+                    @foreach (var entry in this.LogEntries)
+                    {
+                        var entryColor = entry.Type switch
+                        {
+                            BlazorLogger.EntryType.Info => "white",
+                            BlazorLogger.EntryType.Warning => "orange",
+                            BlazorLogger.EntryType.Error => "red",
+                            _ => throw new InvalidOperationException(entry.Type.ToString()),
+                        };
+                        <div>
+                            <span style="color: limegreen">@("> ")</span>
+                            <span style="color: @entryColor">@entry.Message</span>
+                        </div>
+                    }
+                    <div style="color: limegreen">@("> ")</div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+    @code {
+        public string DeckName { get; set; } = string.Empty;
+
+        public string DeckText { get; set; } = string.Empty;
+
+        public string DefaultDeckName => Application.GetDeckName(this.DeckText);
+
+        public ImportStatus Status { get; set; }
+        public string StatusMessage { get; set; } = string.Empty;
+
+        public List<BlazorLogger.Entry> LogEntries { get; } = new();
+
+        public bool ShowDeckListHelpText { get; set; }
+
+        public void ToggleDeckListHelpText() => this.ShowDeckListHelpText = !this.ShowDeckListHelpText;
+
+        public async Task Import()
+        {
+            this.Status = ImportStatus.InProgress;
+            this.StatusMessage = "Importing...";
+            try
+            {
+                this.LogEntries.Clear();
+
+                var logger = new BlazorLogger(e =>
+                {
+                    this.LogEntries.Add(e);
+                    this.StateHasChanged();
+                });
+
+                var deckName = string.IsNullOrWhiteSpace(this.DeckName) ? this.DefaultDeckName : this.DeckName;
+                if (await Application.ImportAsync(logger, this.JSRuntime, deckName: deckName, deckText: this.DeckText))
+                {
+                    this.Status = ImportStatus.Succeeded;
+                    this.StatusMessage = "Downloaded!";
+                }
+                else
+                {
+                    this.Status = ImportStatus.Failed;
+                    this.StatusMessage = "Failed";
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                this.Status = ImportStatus.Failed;
+                this.StatusMessage = "Unhandled exception";
+            }
+        }
+
+        public enum ImportStatus { None, InProgress, Succeeded, Failed }
+    }

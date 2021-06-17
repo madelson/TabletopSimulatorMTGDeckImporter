@@ -38,7 +38,7 @@ namespace TabletopMtgImporter.Tests.Scripts
 
             var deck = TabletopDeckCreator.CreateDeck(cardsAndRelatedCards.Keys.OrderBy(c => c.Name).ToArray(), cardsAndRelatedCards);
             var json = JsonConvert.SerializeObject(deck, Formatting.Indented);
-            File.WriteAllText(Path.Combine(new Configuration().OutputDirectory, "RoboRosewater.json"), json);
+            File.WriteAllText(Path.Combine(new DiskSaver(new TestLogger()).OutputDirectory, "RoboRosewater.json"), json);
         }
     }
 }

@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace TabletopMtgImporter
 {
+    [DebuggerDisplay("{Name}")]
     internal class DeckCard
     {
         public DeckCard(string name, string? set, string? collectorNumber, bool isCommander)

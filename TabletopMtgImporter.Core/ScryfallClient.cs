@@ -13,21 +13,23 @@ namespace TabletopMtgImporter
 {
     internal class ScryfallClient
     {
-        private static readonly string Cache = Path.Combine(Path.GetTempPath(), "TabletopMtgImporter", "Cache");
-
         private readonly HttpClient _httpClient = new HttpClient { BaseAddress = new Uri("https://api.scryfall.com/") };
         private readonly ILogger _logger;
+        private readonly ICache _cache;
 
-        public ScryfallClient(ILogger logger)
+        public ScryfallClient(ILogger logger, ICache cache)
         {
             this._logger = logger;
+            this._cache = cache;
         }
 
         public async Task<T> GetJsonAsync<T>(string url)
+            where T : class
         {
-            if (this.TryGetCachedResponse<T>(url, out var cached))
+            var cachedResponse = await this.GetCachedResponseOrDefaultAsync<T>(url).ConfigureAwait(false);
+            if (cachedResponse != null)
             {
-                return cached;
+                return cachedResponse;
             }
 
             this._logger.Info($"Downloading {url}");
@@ -44,45 +46,27 @@ namespace TabletopMtgImporter
 
             var content = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             var result = JsonConvert.DeserializeObject<T>(content); // ensure deserializes before caching
-            this.AddToCache(url, content);
+            await this._cache.SetValueAsync(url, content).ConfigureAwait(false);
             return result;
         }
 
-        private bool TryGetCachedResponse<T>(string url, out T value)
+        private async Task<T?> GetCachedResponseOrDefaultAsync<T>(string url)
+            where T : class
         {
-            var path = GetCachePath(url);
-            if (File.Exists(path))
+            var cachedValue = await this._cache.GetValueOrDefaultAsync(url).ConfigureAwait(false);
+            if (cachedValue != null)
             {
                 try
                 {
-                    value = JsonConvert.DeserializeObject<T>(File.ReadAllText(path));
-                    return true;
+                    return JsonConvert.DeserializeObject<T>(cachedValue);
                 }
                 catch (Exception ex)
                 {
-                    this._logger.Debug($"Possible cache corruption: {path}: {ex}");
+                    this._logger.Debug($"Possible cache corruption: key={url}: {ex}");
                 }
             }
 
-            value = default!;
-            return false;
-        }
-
-        private void AddToCache(string url, string content)
-        {
-            var path = GetCachePath(url);
-            Directory.CreateDirectory(Path.GetDirectoryName(path));
-            File.WriteAllText(path, content);
-        }
-
-        private static string GetCachePath(string url) => Path.Combine(Cache, HashUrl(url));
-
-        private static string HashUrl(string url)
-        {
-            using var sha = SHA256.Create();
-            var bytes = Encoding.UTF8.GetBytes(url);
-            var hash = sha.ComputeHash(bytes);
-            return new BigInteger(hash).ToString("x");
+            return null;
         }
     }
 }

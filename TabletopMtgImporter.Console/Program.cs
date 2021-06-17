@@ -39,7 +39,8 @@ namespace TabletopMtgImporter.Console
                 return 2;
             }
 
-            return await new Importer(new ConsoleLogger(), new Configuration()).TryImportAsync(new DeckFileInput(deckFile)) ? 0 : 3;
+            var logger = new ConsoleLogger();
+            return await new Importer(logger, new DiskCache(), new DiskSaver(logger)).TryImportAsync(new DeckFileInput(deckFile)) ? 0 : 3;
         }
     }
 }

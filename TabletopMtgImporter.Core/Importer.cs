@@ -12,12 +12,14 @@ namespace TabletopMtgImporter
     public sealed class Importer
     {
         private readonly ILogger _logger;
-        private readonly Configuration _configuration;
+        private readonly ICache _cache;
+        private readonly ISaver _saver;
 
-        public Importer(ILogger logger, Configuration configuration)
+        public Importer(ILogger logger, ICache cache, ISaver saver)
         {
             this._logger = logger ?? throw new ArgumentNullException(nameof(logger));
-            this._configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
+            this._cache = cache ?? throw new ArgumentNullException(nameof(cache));
+            this._saver = saver ?? throw new ArgumentNullException(nameof(saver));
         }
 
         public Task<bool> TryImportAsync(IDeckInput deckInput)
@@ -58,7 +60,7 @@ namespace TabletopMtgImporter
                 // This set allows us to avoid adding the same related card twice. We check based on Uri rather than name
                 // because tokens can have the same name but different identity (e. g. Soldier with lifelink vs. not)
                 var loadedRelatedCardUris = new HashSet<Uri>();
-                var scryfallClient = new ScryfallClient(this._logger);
+                var scryfallClient = new ScryfallClient(this._logger, this._cache);
                 var hasDownloadError = false;
                 foreach (var card in cards.Distinct())
                 {
@@ -103,10 +105,7 @@ namespace TabletopMtgImporter
 
                 var deck = TabletopDeckCreator.CreateDeck(cards, cardInfo);
                 var deckJson = JsonConvert.SerializeObject(deck, Formatting.Indented);
-                Directory.CreateDirectory(this._configuration.OutputDirectory); // ensure created
-                var outputPath = Path.Combine(this._configuration.OutputDirectory, Path.GetFileNameWithoutExtension(deckInput.Name) + ".json");
-                File.WriteAllText(outputPath, deckJson);
-                this._logger.Info("Wrote output to " + outputPath);
+                await this._saver.SaveAsync(name: Path.GetFileNameWithoutExtension(deckInput.Name) + ".json", contents: deckJson);
 
                 return true;
             }

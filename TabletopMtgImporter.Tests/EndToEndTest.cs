@@ -25,13 +25,13 @@ namespace TabletopMtgImporter.Tests
             using var sample = SamplesHelper.GetSample(sampleName);
 
             var testLogger = new TestLogger();
-            var importer = new Importer(testLogger, TestConfiguration.Configuration);
+            var importer = new Importer(testLogger, new DiskCache(), TestHelper.CreateSaver(testLogger));
             var result = await importer.TryImportAsync(new DeckFileInput(sample.Path));
             Assert.IsEmpty(testLogger.ErrorLines);
             Assert.IsEmpty(testLogger.WarningLines);
             Assert.IsTrue(result);
 
-            var outputFile = Path.Combine(TestConfiguration.Configuration.OutputDirectory, Path.ChangeExtension(Path.GetFileName(sample.Path), ".json"));
+            var outputFile = Path.Combine(TestHelper.OutputDirectory, Path.ChangeExtension(Path.GetFileName(sample.Path), ".json"));
             Assert.IsTrue(File.Exists(outputFile));
 
             var outputText = File.ReadAllText(outputFile);
@@ -68,13 +68,13 @@ namespace TabletopMtgImporter.Tests
         private async Task<TabletopDeckObject> ImportDeckAsync(params string[] cards)
         {
             var testLogger = new TestLogger();
-            var importer = new Importer(testLogger, TestConfiguration.Configuration);
+            var importer = new Importer(testLogger, new DiskCache(), TestHelper.CreateSaver(testLogger));
             var deckInput = new StringDeckInput { Text = string.Join(Environment.NewLine, cards) };
             Assert.IsTrue(await importer.TryImportAsync(deckInput));
             Assert.IsEmpty(testLogger.ErrorLines);
             Assert.AreEqual(1, testLogger.WarningLines.Count, message: string.Join(Environment.NewLine, testLogger.WarningLines));
             Assert.That(testLogger.WarningLines[0], Does.Match(@"^WARNING: deck contains \d+ card"));
-            var outputText = File.ReadAllText(Path.Combine(TestConfiguration.Configuration.OutputDirectory, Path.GetFileNameWithoutExtension(deckInput.Name) + ".json"));
+            var outputText = File.ReadAllText(Path.Combine(TestHelper.OutputDirectory, Path.GetFileNameWithoutExtension(deckInput.Name) + ".json"));
             return JsonConvert.DeserializeObject<TabletopDeckObject>(outputText);
         }
 
