@@ -61,7 +61,9 @@ namespace TabletopMtgImporter
                                 t => t.index + 1,
                                 t => new TabletopDeckObject.CardInfo
                                 {
-                                    FaceUrl = cardsAndRelatedCards[t.card].ImageUris!["large"],
+                                    FaceUrl = (cardsAndRelatedCards[t.card].ImageUris ?? cardsAndRelatedCards[t.card].Faces![0].ImageUris)["large"],
+                                    BackUrl = (cardsAndRelatedCards[t.card].ImageUris ?? cardsAndRelatedCards[t.card].Faces![1].ImageUris)["large"]
+                                        ?? TabletopDeckObject.CardInfo.DefaultBackUrl
                                 }
                             ),
                         Transform = { PosX = 2.2, RotZ = 0 },

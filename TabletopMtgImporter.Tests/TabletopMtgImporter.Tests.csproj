@@ -20,6 +20,7 @@
   </ItemGroup>
   
   <ItemGroup>
+    <None Remove="Samples\DoubleSidedTokens.txt" />
     <None Remove="Samples\Foils.txt" />
     <None Remove="Samples\SameNameTokens.txt" />
   </ItemGroup>

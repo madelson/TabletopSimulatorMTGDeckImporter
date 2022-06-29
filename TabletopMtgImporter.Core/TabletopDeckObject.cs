@@ -31,7 +31,7 @@ namespace TabletopMtgImporter
 
         public class CardInfo
         {
-            private static readonly Uri DefaultBackUrl = new Uri("https://www.frogtown.me/images/gatherer/CardBack.jpg");
+            public static readonly Uri DefaultBackUrl = new Uri("https://www.frogtown.me/images/gatherer/CardBack.jpg");
 
             [JsonProperty("FaceURL")]
             public Uri FaceUrl = default!;

@@ -12,14 +12,15 @@ namespace TabletopMtgImporter.Tests
 {
     public class EndToEndTest
     {
-        [TestCase("Archidekt1CardNameFormat.txt", ExpectedResult = "count=108,hash=1Tn1wG0GoooaY2MmHwvB2g==")]
-        [TestCase("Archidekt1xCardNameCodeCategoryLabel.txt", ExpectedResult = "count=105,hash=6dg6IPECMxAOVUuKFcR8yQ==")]
-        [TestCase("MaybeboardAndAlternateArtCollectorNumber.txt", ExpectedResult = "count=108,hash=zHg9fZWqNKk6wlJmoLBu0w==")]
-        [TestCase("ComboPieceRelatedCards.txt", ExpectedResult = "count=115,hash=hthbJgpnr1Ul4CI3x8cB7A==")]
-        [TestCase("Foils.txt", ExpectedResult = "count=109,hash=hSS2IV3TkyYBo3S1zHTUnw==")]
-        [TestCase("SameNameTokens.txt", ExpectedResult = "count=115,hash=hthbJgpnr1Ul4CI3x8cB7A==")]
+        [TestCase("Archidekt1CardNameFormat.txt", ExpectedResult = "count=109,hash=YKTIyLjOSGqaSYw3N0cw8g==")]
+        [TestCase("Archidekt1xCardNameCodeCategoryLabel.txt", ExpectedResult = "count=107,hash=8ihrLpfvLbshr11zjvJohw==")]
+        [TestCase("MaybeboardAndAlternateArtCollectorNumber.txt", ExpectedResult = "count=110,hash=2R7XUOJ0w6zz22qmvAtBeA==")]
+        [TestCase("ComboPieceRelatedCards.txt", ExpectedResult = "count=117,hash=ozkyoceJoGeI+zsu1yNz7w==")]
+        [TestCase("Foils.txt", ExpectedResult = "count=111,hash=84cvVUpsC3NFj5LT1TXoLw==")]
+        [TestCase("SameNameTokens.txt", ExpectedResult = "count=117,hash=ozkyoceJoGeI+zsu1yNz7w==")]
         [TestCase("ArchidektUpdatedCategoryFormat.txt", ExpectedResult = "count=101,hash=B+6eJzK8ihFObkI/htreeg==")]
-        [TestCase("ArchidektUpdatedCategoryFormatMultipleCommanders.txt", ExpectedResult = "count=103,hash=jzAhbtVejcFgDWWJOzKFHw==")]
+        [TestCase("ArchidektUpdatedCategoryFormatMultipleCommanders.txt", ExpectedResult = "count=104,hash=TTDyIZ78YtU4jsegbmCBHQ==")]
+        [TestCase("DoubleSidedTokens.txt", ExpectedResult = "count=108,hash=W3ibVkxXjpbT7v3pB2TrTg==")]
         public async Task<string> TestRunsEndToEndWithoutErrors(string sampleName)
         {
             using var sample = SamplesHelper.GetSample(sampleName);
