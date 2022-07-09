@@ -38,6 +38,8 @@ namespace TabletopMtgImporter
             public string Name = default!;
             public Uri Uri = default!;
             public string Component = default!;
+            [JsonProperty("type_line")]
+            public string TypeLine = default!;
         }
     }
 }

@@ -14,12 +14,12 @@ namespace TabletopMtgImporter.Tests
     {
         [TestCase("Archidekt1CardNameFormat.txt", ExpectedResult = "count=109,hash=YKTIyLjOSGqaSYw3N0cw8g==")]
         [TestCase("Archidekt1xCardNameCodeCategoryLabel.txt", ExpectedResult = "count=107,hash=8ihrLpfvLbshr11zjvJohw==")]
-        [TestCase("MaybeboardAndAlternateArtCollectorNumber.txt", ExpectedResult = "count=110,hash=2R7XUOJ0w6zz22qmvAtBeA==")]
-        [TestCase("ComboPieceRelatedCards.txt", ExpectedResult = "count=117,hash=ozkyoceJoGeI+zsu1yNz7w==")]
+        [TestCase("MaybeboardAndAlternateArtCollectorNumber.txt", ExpectedResult = "count=112,hash=7By1DRrWZSQA5W0RKKjmSA==")]
+        [TestCase("ComboPieceRelatedCards.txt", ExpectedResult = "count=119,hash=EUI/EOUifT7HnryLt4ryRg==")]
         [TestCase("Foils.txt", ExpectedResult = "count=111,hash=84cvVUpsC3NFj5LT1TXoLw==")]
-        [TestCase("SameNameTokens.txt", ExpectedResult = "count=117,hash=ozkyoceJoGeI+zsu1yNz7w==")]
+        [TestCase("SameNameTokens.txt", ExpectedResult = "count=119,hash=EUI/EOUifT7HnryLt4ryRg==")]
         [TestCase("ArchidektUpdatedCategoryFormat.txt", ExpectedResult = "count=101,hash=B+6eJzK8ihFObkI/htreeg==")]
-        [TestCase("ArchidektUpdatedCategoryFormatMultipleCommanders.txt", ExpectedResult = "count=104,hash=TTDyIZ78YtU4jsegbmCBHQ==")]
+        [TestCase("ArchidektUpdatedCategoryFormatMultipleCommanders.txt", ExpectedResult = "count=105,hash=adsSlvFJryKlNUh3mEUbqQ==")]
         [TestCase("DoubleSidedTokens.txt", ExpectedResult = "count=108,hash=W3ibVkxXjpbT7v3pB2TrTg==")]
         public async Task<string> TestRunsEndToEndWithoutErrors(string sampleName)
         {

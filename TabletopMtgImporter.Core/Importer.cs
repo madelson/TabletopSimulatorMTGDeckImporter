@@ -5,12 +5,19 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace TabletopMtgImporter
 {
     public sealed class Importer
     {
+        /// <summary>
+        /// Based on MTG comprehensive rules with "emblem" and "card" added
+        /// </summary>
+        private static readonly Regex NonStandardCardTypesRegex = 
+            new(@"\b(conspiracy|dungeon|phenomenon|plane|scheme|vanguard|emblem|card)\b", RegexOptions.IgnoreCase);
+
         private readonly ILogger _logger;
         private readonly ICache _cache;
         private readonly ISaver _saver;
@@ -82,7 +89,7 @@ namespace TabletopMtgImporter
                     {
                         cardInfo[card] = info;
                         foreach (var relatedCard in (info.RelatedCards ?? Enumerable.Empty<ScryfallCard.RelatedCard>())
-                            .Where(rc => rc.Component != "combo_piece" || rc.Name.EndsWith("Emblem", StringComparison.Ordinal)))
+                            .Where(rc => rc.Component != "combo_piece" || NonStandardCardTypesRegex.IsMatch(rc.TypeLine)))
                         {
                             if (loadedRelatedCardUris.Add(relatedCard.Uri))
                             {
