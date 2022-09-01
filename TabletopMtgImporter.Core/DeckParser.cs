@@ -95,8 +95,8 @@ namespace TabletopMtgImporter
                     (\s+\((?<set>\w+)\)(\s(?<collectorNumber>\d+[a-zA-Z]?))?)?
                     # optional foil marker
                     (\s+\*F\*)?
-                    # category [x{a}{b}...] (new format) or `x` (old format)
-                    (\s+[\[`](?<category>[^`\{\]]+)(\{.*?\})*[\]`])?
+                    # category [x{a}{b}...,] (new format) or `x` (old format).
+                    (\s+[\[`](,?(?<category>[^`\{,\]]+)(\{.*?\})*)+[\]`])?
                     # label
                     (\s+\^(?<label>[^\^]+)\^)?\s*
                 $",
@@ -110,12 +110,15 @@ namespace TabletopMtgImporter
                     MaybeboardCategory = "Maybeboard";
 
                 var categoryGroup = match.Groups["category"];
-                var category = categoryGroup.Success ? categoryGroup.Value : null;
-                if (StringComparer.OrdinalIgnoreCase.Equals(category, MaybeboardCategory))
+                var categories = new HashSet<string>(
+                    categoryGroup.Captures.Cast<Capture>().Select(c => c.Value),
+                    StringComparer.OrdinalIgnoreCase
+                );
+                if (categories.Contains(MaybeboardCategory))
                 {
                     return Array.Empty<DeckCard>(); // skip
                 }
-                var isCommander = StringComparer.OrdinalIgnoreCase.Equals(category, CommanderCategory);
+                var isCommander = categories.Contains(CommanderCategory);
 
                 var setGroup = match.Groups["set"];
                 var set = setGroup.Success ? setGroup.Value : null;

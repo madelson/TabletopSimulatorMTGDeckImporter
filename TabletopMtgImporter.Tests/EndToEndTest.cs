@@ -66,6 +66,16 @@ namespace TabletopMtgImporter.Tests
             CollectionAssert.AreEquivalent(new[] { cardName }, imported.ObjectStates[2].ContainedObjects.Select(o => o.Nickname));
         }
 
+        [Test]
+        public async Task TestCommandSeparatedCategories()
+        {
+            var deck = await this.ImportDeckAsync("1x Terramorphic Expanse (dmc) [Maybeboard{noDeck}{noPrice},Land] ");
+            Assert.IsEmpty(deck.ObjectStates[0].ContainedObjects); // all in maybeboard
+
+            deck = await this.ImportDeckAsync("1x Terramorphic Expanse (dmc) [Land,Commander] ");
+            Assert.AreEqual("Terramorphic Expanse", deck.ObjectStates[0].ContainedObjects.Single().Nickname);
+        }
+
         private async Task<TabletopDeckObject> ImportDeckAsync(params string[] cards)
         {
             var testLogger = new TestLogger();
