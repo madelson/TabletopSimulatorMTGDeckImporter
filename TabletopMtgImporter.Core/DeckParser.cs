@@ -110,15 +110,14 @@ namespace TabletopMtgImporter
                     MaybeboardCategory = "Maybeboard";
 
                 var categoryGroup = match.Groups["category"];
-                var categories = new HashSet<string>(
-                    categoryGroup.Captures.Cast<Capture>().Select(c => c.Value),
-                    StringComparer.OrdinalIgnoreCase
-                );
-                if (categories.Contains(MaybeboardCategory))
+                // Note: in Architedekt a card can have multiple categories but only the primary (first) category
+                // counts for the purposes of being maybeboard or commander
+                var primaryCategory = categoryGroup.Captures.Cast<Capture>().FirstOrDefault()?.Value;
+                if (primaryCategory == MaybeboardCategory)
                 {
                     return Array.Empty<DeckCard>(); // skip
                 }
-                var isCommander = categories.Contains(CommanderCategory);
+                var isCommander = primaryCategory == CommanderCategory;
 
                 var setGroup = match.Groups["set"];
                 var set = setGroup.Success ? setGroup.Value : null;

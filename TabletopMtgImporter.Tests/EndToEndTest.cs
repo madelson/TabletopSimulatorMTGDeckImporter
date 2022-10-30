@@ -76,15 +76,29 @@ namespace TabletopMtgImporter.Tests
             Assert.AreEqual("Terramorphic Expanse", deck.ObjectStates[0].ContainedObjects.Single().Nickname);
         }
 
-        private async Task<TabletopDeckObject> ImportDeckAsync(params string[] cards)
+        [Test]
+        public async Task TestCategoryOverridesMaybeboard()
+        {
+            using var sample = SamplesHelper.GetSample("BraidsCategoryOverridesMaybeboard.txt");
+            var deck = await this.ImportDeckAsync(File.ReadLines(sample.Path), require100Cards: true);
+            Assert.That(deck.ObjectStates[0].ContainedObjects.Select(o => o.Nickname), Does.Contain("Maro"));
+        }
+
+        private Task<TabletopDeckObject> ImportDeckAsync(params string[] cards) => ImportDeckAsync(cards.AsEnumerable());
+
+        private async Task<TabletopDeckObject> ImportDeckAsync(IEnumerable<string> cards, bool require100Cards = false)
         {
             var testLogger = new TestLogger();
             var importer = new Importer(testLogger, new DiskCache(), TestHelper.CreateSaver(testLogger));
             var deckInput = new StringDeckInput { Text = string.Join(Environment.NewLine, cards) };
             Assert.IsTrue(await importer.TryImportAsync(deckInput));
             Assert.IsEmpty(testLogger.ErrorLines);
-            Assert.AreEqual(1, testLogger.WarningLines.Count, message: string.Join(Environment.NewLine, testLogger.WarningLines));
-            Assert.That(testLogger.WarningLines[0], Does.Match(@"^WARNING: deck contains \d+ card"));
+            if (require100Cards) { Assert.IsEmpty(testLogger.WarningLines); }
+            else 
+            {
+                Assert.AreEqual(1, testLogger.WarningLines.Count, message: string.Join(Environment.NewLine, testLogger.WarningLines));
+                Assert.That(testLogger.WarningLines[0], Does.Match(@"^WARNING: deck contains \d+ card"));
+            }
             var outputText = File.ReadAllText(Path.Combine(TestHelper.OutputDirectory, Path.GetFileNameWithoutExtension(deckInput.Name) + ".json"));
             return JsonConvert.DeserializeObject<TabletopDeckObject>(outputText);
         }
