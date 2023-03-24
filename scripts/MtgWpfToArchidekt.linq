@@ -49,7 +49,7 @@ static (string Name, string Set, int Count)[] ParseInputFile(string inputFile)
 		.Where(m => m.Success ? true : throw new FormatException("Malformed line"))
 		.Select(m => (Name: m.Groups["name"].Value, Set: m.Groups["set"].Value.ToLowerInvariant(), Count: int.Parse(m.Groups["count"].Value)))
 		.GroupBy(c => c.Name)
-		.Select(g => (g.Key, g.First().Set, g.Sum(c => c.Count())))
+		.Select(g => (g.Key, g.First().Set, g.Sum(c => c.Count)))
 		.ToArray();
 }
 
