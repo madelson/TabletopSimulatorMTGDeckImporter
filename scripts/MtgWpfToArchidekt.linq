@@ -34,7 +34,7 @@ async Task Main(string[] args)
 	var outputContents = string.Join(
 		Environment.NewLine,
 		mappedInputFileCards
-			.Select(t => $"{t.Count}x {t.Card.name} ({t.Set}) [{(primaryColorIdentities.Contains(t.Card.ColorIdentity) ? ToString(t.Card.ColorIdentity) : "Other")}]")
+			.Select(t => $"{t.Count}x {t.Card.name} ({t.Set}) {t.Card.collector_number} [{(primaryColorIdentities.Contains(t.Card.ColorIdentity) ? ToString(t.Card.ColorIdentity) : "Other")}]")
 	);
 	var outputPath = Path.GetFullPath("./cards.txt");
 	File.WriteAllText(outputPath, outputContents);
@@ -133,6 +133,7 @@ class Card
 	public string set;
 	public string layout;
 	public char[] color_identity;
+	public string collector_number;
 	
 	private ColorIdentity? _colorIdentity;
 	
