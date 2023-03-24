@@ -47,7 +47,9 @@ static (string Name, string Set, int Count)[] ParseInputFile(string inputFile)
 		.Where(l => l.Trim().Length > 0)
 		.Select(l => Regex.Match(l, @"^\s*(?<count>\d+)\s+\[(?<set>\w+):.*?]\s+(?<name>.*?)\s*(\[.*?\]\s*)?$"))
 		.Where(m => m.Success ? true : throw new FormatException("Malformed line"))
-		.Select(m => (m.Groups["name"].Value, m.Groups["set"].Value.ToLowerInvariant(), int.Parse(m.Groups["count"].Value)))
+		.Select(m => (Name: m.Groups["name"].Value, Set: m.Groups["set"].Value.ToLowerInvariant(), Count: int.Parse(m.Groups["count"].Value)))
+		.GroupBy(c => c.Name)
+		.Select(g => (g.Key, g.First().Set, g.Sum(c => c.Count())))
 		.ToArray();
 }
 
