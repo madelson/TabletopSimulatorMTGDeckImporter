@@ -9,7 +9,7 @@
 
 async Task Main(string[] args)
 {
-	ParseArgs(args, out var inputFile);
+	ParseArgs(args, out var inputFile, out var colorIdentityFilter);
 	
 	var inputFileCards = ParseInputFile(inputFile);	
 	
@@ -34,11 +34,17 @@ async Task Main(string[] args)
 	var outputContents = string.Join(
 		Environment.NewLine,
 		mappedInputFileCards
-			.Select(t => $"{t.Count}x {t.Card.name} ({t.Set}) {t.Card.collector_number} [{(primaryColorIdentities.Contains(t.Card.ColorIdentity) ? ToString(t.Card.ColorIdentity) : "Other")}]")
+			.Where(t => !colorIdentityFilter.HasValue || (t.Card.ColorIdentity & colorIdentityFilter.Value) == t.Card.ColorIdentity)
+			.Select(t => $"{t.Count}x {t.Card.name} ({t.Set}) {t.Card.collector_number} [{GetCategory(t.Card)}]")
 	);
 	var outputPath = Path.GetFullPath("./cards.txt");
 	File.WriteAllText(outputPath, outputContents);
 	Console.WriteLine($"Cards written to {outputPath}");
+	
+	string GetCategory(Card card) =>
+		colorIdentityFilter.HasValue ? "Maybeboard"
+			: primaryColorIdentities.Contains(card.ColorIdentity) ? ToString(card.ColorIdentity)
+			: "Other";
 }
 
 static (string Name, string Set, int Count)[] ParseInputFile(string inputFile)
@@ -53,11 +59,11 @@ static (string Name, string Set, int Count)[] ParseInputFile(string inputFile)
 		.ToArray();
 }
 
-static void ParseArgs(string[] args, out string inputFile)
+static void ParseArgs(string[] args, out string inputFile, out ColorIdentity? colorIdentityFilter)
 {
-	if (args.Length != 1)
+	if (args.Length is not (1 or 2))
 	{
-		Console.Error.WriteLine($"Usage: lprun7 {Path.GetFileName(Util.CurrentQueryPath)} <inputFile>");
+		Console.Error.WriteLine($"Usage: lprun7 {Path.GetFileName(Util.CurrentQueryPath)} <inputFile> [colorIdentityFilter]");
 		Environment.Exit(-1);
 	}
 	
@@ -66,7 +72,18 @@ static void ParseArgs(string[] args, out string inputFile)
 	{
 		Console.Error.WriteLine($"File '{inputFile}' does not exist");
 		Environment.Exit(-2);
-	}	
+	}
+	
+	if (args.Length == 1)
+	{
+		colorIdentityFilter = null;
+		return;
+	}
+	
+	var colorIdentityFilterArg = args[1].ToUpperInvariant();
+	colorIdentityFilter = colorIdentityFilterArg == "C"
+		? ColorIdentity.C
+		: GetColorIdentity(colorIdentityFilterArg.ToCharArray());
 }
 
 static ColorIdentity GetColorIdentity(char[] array)
@@ -80,7 +97,7 @@ static ColorIdentity GetColorIdentity(char[] array)
 			'B' => ColorIdentity.B,
 			'R' => ColorIdentity.R,
 			'G' => ColorIdentity.G,
-			_ => throw new FormatException(ch.ToString())
+			_ => throw new FormatException($"Unexpected color identity '{ch}'")
 		};
 	}
 	return result;
