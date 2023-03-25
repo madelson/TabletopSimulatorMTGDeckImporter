@@ -2,6 +2,7 @@
 
 * On the [sealed page of mtg.wpf](https://mtg.wtf/sealed), generate your box and click "Preview as Deck".
 * Scroll down and copy the plain text content of the deck to a file in your downloads folder (e.g. "deck.txt"). **NOTE** save this file in case you want to reset later!
+* Install the [.NET 7 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/7.0)
 * [Install LINQPad7](https://www.linqpad.net/Download.aspx).
 * Right click [this link](https://github.com/madelson/TabletopSimulatorMTGDeckImporter/raw/master/scripts/MtgWpfToArchidekt.linq) -> "Save link as" and save it to your downloads folder. Be sure to replace any previous version!
 * Open command prompt (Windows Key+R, type "cmd", hit "Ok")
