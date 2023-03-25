@@ -7,5 +7,7 @@
 * Open command prompt (Windows Key+R, type "cmd", hit "Ok")
 * Run `cd %userprofile%\Downloads`
 * Run `lprun7 MtgWpfToArchidekt.linq deck.txt`
+    * If you get an error saying lprun7 is not recognized, try the following instead: `"c:\Program Files\LINQPad7\LPRun7.exe" MtgWpfToArchidekt.linq deck.txt`
 * Open the generated cards.txt file and paste the content into the import panel in [Archidekt](https://archidekt.com/)
 * **NOTE**: once you've picked your colors (e.g. black/white), you can run `lprun7 MtgWpfToArchidekt.linq deck.txt WB` to regenerate cards.txt filtered down to just the cards that fit that color identity.
+    * If you get an error saying lprun7 is not recognized, try the following instead: `"c:\Program Files\LINQPad7\LPRun7.exe" MtgWpfToArchidekt.linq deck.txt WB`
