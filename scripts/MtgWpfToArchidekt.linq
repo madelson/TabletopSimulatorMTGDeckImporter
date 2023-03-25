@@ -108,7 +108,7 @@ static string ToString(ColorIdentity colorIdentity) => colorIdentity.ToString().
 static async Task<Card[]> GetAllCardsAsync()
 {
 	var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads", "scryfall-default-cards.json");
-	if (File.Exists(path) && (DateTime.UtcNow - File.GetLastWriteTimeUtc(path)) >= TimeSpan.FromDays(7))
+	if (!File.Exists(path) || (DateTime.UtcNow - File.GetLastWriteTimeUtc(path)) >= TimeSpan.FromDays(7))
 	{
 		await DownloadCardsAsync(path);
 	}
