@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-sm w-50">
                 <div>
-                    <span>Deck list</span>
+                    <span><label for="deckText">Deck list</label></span>
                     @* note: empty href gives link styling *@
                     <a @onclick="this.ToggleDeckListHelpText" class="ml-1" style="vertical-align: middle; font-size: 0.7rem" href="">help</a>
                 </div>
@@ -14,7 +14,7 @@
                     <div class="my-1" style="font-size: 0.7rem; color:gray">
                         This tool is easiest to use with <a href="https://archidekt.com">Architedekt</a>. 
                         <br /><br />
-                        When viewing your deck, click the "Edit" button on the left sidebar, then copy the contents into the text box below.
+                        When viewing your deck, click the "Import" button on the left sidebar, then copy the contents into the text box below.
                         <br /><br />
                         When viewing someone else's deck, you can click the "Export" button on the left sidebar, choose "Text" and the "1x Card Name (code) *F* [Category] ^Label,#000000^" 
                         format. Click the "Download" button, then copy the contents of the downloaded file into the text box below.
@@ -22,9 +22,9 @@
                         For more, check out <a href="https://github.com/madelson/TabletopSimulatorMTGDeckImporter/blob/master/docs/instructions.md">the documentation</a>.
                     </div>
                 }
-                <textarea @bind="this.DeckText" @bind:event="oninput" class="mb-1 w-100" style="height: 30em;" />
-
-                <div>Deck name</div>
+                <textarea id="deckText" @bind="this.DeckText" @bind:event="oninput" class="mb-1 w-100" style="height: 30em;" />
+                
+                <div><label for="deckName">Deck name</label></div>
                 <input id="deckName" type="text" @bind="this.DeckName" @bind:event="oninput" placeholder="@this.DefaultDeckName" class="w-100" />
             </div>
             <div class="col-sm w-50">

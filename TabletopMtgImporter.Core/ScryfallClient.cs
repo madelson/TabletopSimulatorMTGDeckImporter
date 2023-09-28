@@ -45,7 +45,7 @@ namespace TabletopMtgImporter
             }
 
             var content = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-            var result = JsonConvert.DeserializeObject<T>(content); // ensure deserializes before caching
+            var result = JsonConvert.DeserializeObject<T>(content)!; // ensure deserializes before caching
             await this._cache.SetValueAsync(url, content).ConfigureAwait(false);
             return result;
         }

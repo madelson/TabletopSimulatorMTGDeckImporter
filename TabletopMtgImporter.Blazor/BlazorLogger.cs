@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Index = TabletopMtgImporter.Blazor.Pages.Index;
 
 namespace TabletopMtgImporter.Blazor
 {
