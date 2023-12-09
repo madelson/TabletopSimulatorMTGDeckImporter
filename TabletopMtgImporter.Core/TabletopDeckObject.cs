@@ -31,7 +31,7 @@ namespace TabletopMtgImporter
 
         public class CardInfo
         {
-            public static readonly Uri DefaultBackUrl = new Uri("https://backs.scryfall.io/large/2/2/222b7a3b-2321-4d4c-af19-19338b134971.jpg");
+            public static readonly Uri DefaultBackUrl = new Uri("https://raw.githubusercontent.com/madelson/TabletopSimulatorMTGDeckImporter/master/images/card-back.jpg");
 
             [JsonProperty("FaceURL")]
             public Uri FaceUrl = default!;
