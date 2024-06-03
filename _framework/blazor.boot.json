@@ -7,7 +7,7 @@
   "linkerEnabled": true,
   "resources": {
     "assembly": {
-      "Microsoft.AspNetCore.Components.dll": "sha256-UmX4yEeJpgBLqZkpHkVHoCqKVW+oYVWab1HpyojOx8Y=",
+      "Microsoft.AspNetCore.Components.dll": "sha256-K+kbVc6WxDXjRiI872icBgDkkqKzr5O4lvQy7+Tt+i8=",
       "Microsoft.AspNetCore.Components.Web.dll": "sha256-wODnzVzJ8TKc2\/ijLSXNCYYMlkMTwtRzQbvsoqeDqqU=",
       "Microsoft.AspNetCore.Components.WebAssembly.dll": "sha256-ueQ5xvBNU1qv\/\/cfI2UalqBWY\/r1CqBFjivn2Dks+Ho=",
       "Microsoft.CSharp.dll": "sha256-+3R77ynHyC3MqWEvxmTlrYxVwDDYp0228sC9qekN6nw=",
@@ -22,7 +22,7 @@
       "Microsoft.Extensions.Primitives.dll": "sha256-YColTWA58whC+8aBjv1O7HgsyYrbHTba601EkNDWAlo=",
       "Microsoft.JSInterop.dll": "sha256-1O10NbohjsCB5uHF5eUhiUCgzW3N7OOrliMmmbajXfk=",
       "Microsoft.JSInterop.WebAssembly.dll": "sha256-ZUAJcpxOKbyho0qWTtYQM0us3udz\/XcSWLwXYbXaAr0=",
-      "netstandard.dll": "sha256-Ezz\/VICLU3BkERcFmrdZTibvwE5n0x\/OppoSKwoHrZ0=",
+      "netstandard.dll": "sha256-2b2Eu+6R5KxFWHM5EmV788P6Y3zg3X6tYtAVCtAVa6s=",
       "Newtonsoft.Json.dll": "sha256-cs8pHUurDt0IqbB8YXPh560au3q3J\/1wRL9jBddRVmE=",
       "System.Collections.Concurrent.dll": "sha256-2idkh7EazpoVWjyBebJyH0oBp+Tl5f0jSzldwuT7Xsc=",
       "System.Collections.dll": "sha256-DSOCZvawKppfkYwZePDSuya+vmyu\/sFE8QzQ61H7tmU=",
@@ -37,7 +37,7 @@
       "System.dll": "sha256-yVhB7IMhsJfIhpkMLmGhIIh90liSKkvJHkBfiJ37FZg=",
       "System.Drawing.dll": "sha256-HRobjfkudeN+EfLRIoWhQRh6\/ljU8hg0De1cQUVPDJs=",
       "System.Drawing.Primitives.dll": "sha256-\/IvjnxfEzYaSg5fbod\/DLs2vvuIwGYJcpyo7YgoaN3Y=",
-      "System.Linq.dll": "sha256-VoYewpnrZkV2UtDAMAkfiWtS\/YdGv00PKQXWFvCR1\/w=",
+      "System.Linq.dll": "sha256-vIJGGrVgmeiLiwUOhTbt0uzinukg1OuSP5ws5z2RNm8=",
       "System.Linq.Expressions.dll": "sha256-eg\/VbrRqlMk3x2pW90214CdSpsx6nByJk0wTDNWfCAU=",
       "System.Memory.dll": "sha256-lPjeDXbIIL3tj6k\/ryld9s7ACe3U\/DJvzHAaMU8COaE=",
       "System.Net.Http.dll": "sha256-KJEI1ocMF1ZOyPG56fsaZeabpDXVR4a4d9SNuglBt2Y=",
@@ -58,8 +58,8 @@
       "System.Text.Encodings.Web.dll": "sha256-2YgzhfsVkqbWS67x3gq2Gr9KHei8tXrLPSGexhdLWMM=",
       "System.Text.Json.dll": "sha256-\/fAxGUKv2\/CkknJDn5KA8ty\/X2vTUPwqFZ1VM1DmogM=",
       "System.Text.RegularExpressions.dll": "sha256-yahy2Bg4EajoORRxirTDaa7fHrkxic9Yuqrug0c\/3ds=",
-      "TabletopMtgImporter.Blazor.dll": "sha256-qtP+rmNlobl0au2R3VlsjdNkZT9Rc5NPlL8wDD6OW+w=",
-      "TabletopMtgImporter.Core.dll": "sha256-CJi4YOlrIZdA61Pdh1AYEJDnjgHykYz\/3\/7LQyVFL4E="
+      "TabletopMtgImporter.Blazor.dll": "sha256-OagEBNNd7zqVS09Wtf089eEaTsIzTVLu8YfSmxtJ\/k4=",
+      "TabletopMtgImporter.Core.dll": "sha256-5OVJnnJudU+clnVsA1PlHMbVo03bi+Pmfs97R9ZOBNU="
     },
     "extensions": null,
     "lazyAssembly": null,
