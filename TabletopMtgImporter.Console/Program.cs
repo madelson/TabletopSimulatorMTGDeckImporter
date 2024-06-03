@@ -26,6 +26,14 @@ namespace TabletopMtgImporter.Console
                 Debugger.Launch();
             }
 
+            bool useUwcCards;
+            if (args.Contains("--uwc"))
+            {
+                useUwcCards = true;
+                args = args.Where(a => a != "--uwc").ToArray();
+            }
+            else { useUwcCards = false; }
+
             if (args.Length != 1)
             {
                 Console.Error.WriteLine($"Usage {typeof(Program).Assembly.GetName().Name} <deckFile>");
@@ -40,7 +48,7 @@ namespace TabletopMtgImporter.Console
             }
 
             var logger = new ConsoleLogger();
-            return await new Importer(logger, new DiskCache(), new DiskSaver(logger)).TryImportAsync(new DeckFileInput(deckFile)) ? 0 : 3;
+            return await new Importer(logger, new DiskCache(), new DiskSaver(logger)).TryImportAsync(new DeckFileInput(deckFile, useUwcCards)) ? 0 : 3;
         }
     }
 }

@@ -123,6 +123,21 @@ namespace TabletopMtgImporter.Wpf
                 }
             }
         }
+
+        private bool _useUwcCards = true;
+
+        public bool UseUwcCards
+        {
+            get => this._useUwcCards;
+            set
+            {
+                if (value != this._useUwcCards)
+                {
+                    this._useUwcCards = value;
+                    this.OnPropertyChanged();
+                }
+            }
+        }
         #endregion
 
         private void SelectFile()
@@ -192,14 +207,14 @@ namespace TabletopMtgImporter.Wpf
                         if (!string.IsNullOrWhiteSpace(this.PastedDeckName)
                             && !string.IsNullOrWhiteSpace(this.PastedText))
                         {
-                            deckInput = new StringDeckInput(this.PastedDeckName, this.PastedText);
+                            deckInput = new StringDeckInput(this.PastedDeckName, this.PastedText, useUwcCards: this.UseUwcCards);
                             return true;
                         }
                         break;
                     case 1:
                         if (!string.IsNullOrEmpty(this.SelectedFile))
                         {
-                            deckInput = new DeckFileInput(this.SelectedFile!);
+                            deckInput = new DeckFileInput(this.SelectedFile!, useUwcCards: this.UseUwcCards);
                             return true;
                         }
                         break;

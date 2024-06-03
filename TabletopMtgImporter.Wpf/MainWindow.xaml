@@ -39,6 +39,7 @@
                     <Label Padding="10" VerticalAlignment="Center">Import deck</Label>
                 </StackPanel>
             </Button>
+            <CheckBox IsChecked="{Binding UseUwcCards}" Content="Use UWC Cards" DockPanel.Dock="Top" />
             <TextBox Text="{Binding OutputPaneText}" IsReadOnly="true" VerticalScrollBarVisibility="Visible" DockPanel.Dock="Bottom" />
         </DockPanel>
         <TextBlock Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Panel.ZIndex="1" Background="Transparent" Margin="0 0 4 0">

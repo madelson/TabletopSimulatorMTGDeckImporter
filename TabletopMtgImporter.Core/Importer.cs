@@ -87,6 +87,8 @@ namespace TabletopMtgImporter
 
                     if (info != null)
                     {
+                        await UwcProvider.UpdateAsync(info, deckInput);
+
                         cardInfo[card] = info;
                         foreach (var relatedCard in (info.RelatedCards ?? Enumerable.Empty<ScryfallCard.RelatedCard>())
                             .Where(rc => rc.Component != "combo_piece" || NonStandardCardTypesRegex.IsMatch(rc.TypeLine)))
@@ -96,6 +98,7 @@ namespace TabletopMtgImporter
                                 try
                                 {
                                     var relatedInfo = await scryfallClient.GetJsonAsync<ScryfallCard>(relatedCard.Uri.AbsoluteUri).ConfigureAwait(false);
+                                    await UwcProvider.UpdateAsync(relatedInfo, deckInput);
                                     cardInfo[new DeckCard(relatedInfo.Name, set: relatedInfo.Set, collectorNumber: relatedInfo.CollectorNumber, isCommander: false)] = relatedInfo;
                                 }
                                 catch (Exception ex)

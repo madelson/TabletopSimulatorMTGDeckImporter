@@ -16,7 +16,7 @@ namespace TabletopMtgImporter.Blazor
 
         public static string GetDeckName(string deckText)
         {
-            var input = new StringDeckInput(deckText) { Name = string.Empty };
+            var input = new StringDeckInput(deckText, useUwcCards: false) { Name = string.Empty };
             using var reader = input.OpenReader();
 
             int commanderCount;
@@ -53,22 +53,26 @@ namespace TabletopMtgImporter.Blazor
             ILogger logger, 
             IJSRuntime jsRuntime,
             string deckName,
-            string deckText)
+            string deckText,
+            bool useUwcCards)
         {
             var importer = new Importer(logger, new LocalStorageCache(jsRuntime), new DownloadSaver(jsRuntime, logger));
-            return importer.TryImportAsync(new StringDeckInput(deckText) { Name = deckName });
+            return importer.TryImportAsync(new StringDeckInput(deckText, useUwcCards) { Name = deckName });
         }
 
         private class StringDeckInput : IDeckInput
         {
             private readonly string _deckText;
 
-            public StringDeckInput(string deckText)
+            public StringDeckInput(string deckText, bool useUwcCards)
             {
                 this._deckText = deckText;
+                this.UwcSetRegex = new(useUwcCards ? "." : "$^");
             }
 
             public string Name { get; set; } = default!;
+
+            public Regex UwcSetRegex { get; }
 
             public TextReader OpenReader() => new StringReader(this._deckText);
         }

@@ -29,6 +29,7 @@ namespace TabletopMtgImporter
 
         public class Face
         {
+            public string Name = default!;
             [JsonProperty("image_uris")]
             public Dictionary<string, Uri> ImageUris = default!;
         }

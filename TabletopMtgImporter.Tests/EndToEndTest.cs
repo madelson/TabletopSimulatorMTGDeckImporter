@@ -6,28 +6,29 @@ using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace TabletopMtgImporter.Tests
 {
     public class EndToEndTest
     {
-        [TestCase("Archidekt1CardNameFormat.txt", ExpectedResult = "count=109,hash=YKTIyLjOSGqaSYw3N0cw8g==")]
+        [TestCase("Archidekt1CardNameFormat.txt", ExpectedResult = "count=110,hash=uwIFHcN4qgAHynr8PUtidw==")]
         [TestCase("Archidekt1xCardNameCodeCategoryLabel.txt", ExpectedResult = "count=107,hash=8ihrLpfvLbshr11zjvJohw==")]
-        [TestCase("MaybeboardAndAlternateArtCollectorNumber.txt", ExpectedResult = "count=112,hash=7By1DRrWZSQA5W0RKKjmSA==")]
-        [TestCase("ComboPieceRelatedCards.txt", ExpectedResult = "count=119,hash=EUI/EOUifT7HnryLt4ryRg==")]
-        [TestCase("Foils.txt", ExpectedResult = "count=111,hash=84cvVUpsC3NFj5LT1TXoLw==")]
-        [TestCase("SameNameTokens.txt", ExpectedResult = "count=119,hash=EUI/EOUifT7HnryLt4ryRg==")]
+        [TestCase("MaybeboardAndAlternateArtCollectorNumber.txt", ExpectedResult = "count=113,hash=bPMsgich2klAw1wqpTnBlQ==")]
+        [TestCase("ComboPieceRelatedCards.txt", ExpectedResult = "count=121,hash=17/Qnlk4ImPNXeJo03hFHA==")]
+        [TestCase("Foils.txt", ExpectedResult = "count=112,hash=KuTaz4HCMEypbfOcQb1Idg==")]
+        [TestCase("SameNameTokens.txt", ExpectedResult = "count=121,hash=17/Qnlk4ImPNXeJo03hFHA==")]
         [TestCase("ArchidektUpdatedCategoryFormat.txt", ExpectedResult = "count=101,hash=B+6eJzK8ihFObkI/htreeg==")]
         [TestCase("ArchidektUpdatedCategoryFormatMultipleCommanders.txt", ExpectedResult = "count=105,hash=adsSlvFJryKlNUh3mEUbqQ==")]
-        [TestCase("DoubleSidedTokens.txt", ExpectedResult = "count=108,hash=W3ibVkxXjpbT7v3pB2TrTg==")]
+        [TestCase("DoubleSidedTokens.txt", ExpectedResult = "count=109,hash=OwA9GJN3VRVT+4GrLUN3pg==")]
         public async Task<string> TestRunsEndToEndWithoutErrors(string sampleName)
         {
             using var sample = SamplesHelper.GetSample(sampleName);
 
             var testLogger = new TestLogger();
             var importer = new Importer(testLogger, new DiskCache(), TestHelper.CreateSaver(testLogger));
-            var result = await importer.TryImportAsync(new DeckFileInput(sample.Path));
+            var result = await importer.TryImportAsync(new DeckFileInput(sample.Path, useUwcCards: true));
             Assert.IsEmpty(testLogger.ErrorLines);
             Assert.IsEmpty(testLogger.WarningLines);
             Assert.IsTrue(result);
@@ -84,14 +85,39 @@ namespace TabletopMtgImporter.Tests
             Assert.That(deck.ObjectStates[0].ContainedObjects.Select(o => o.Nickname), Does.Contain("Maro"));
         }
 
-        private Task<TabletopDeckObject> ImportDeckAsync(params string[] cards) => ImportDeckAsync(cards.AsEnumerable());
+        [Test]
+        public async Task TestUwc()
+        {
+            var cards = new[]
+            {
+                "1x Canoptek Wraith",
+                "1x Barbara Wright (who) 14",
+                "1x Atomize (pip) 94"
+            };
+
+            var deck = await this.ImportDeckAsync(cards);
+            var mainDeck = deck.ObjectStates[0];
+            CollectionAssert.AreEquivalent(
+                new[] { "Elara, Tapestry Weaver", "Tangle Wraith", "Atomize" },
+                mainDeck.ContainedObjects.Select(o => o.Nickname));
+            CollectionAssert.AreEquivalent(
+                new[]
+                {
+                    "https://madelson.github.io/universes-within-collection/cards/Canoptek%20Wraith.png",
+                    "https://madelson.github.io/universes-within-collection/cards/Barbara%20Wright.png",
+                    "https://madelson.github.io/universes-within-collection/cards/Atomize.png"
+                },
+                mainDeck.CustomDeck.Values.Select(c => c.FaceUrl.AbsoluteUri));
+        }
+
+        private Task<TabletopDeckObject> ImportDeckAsync(params string[] cards) => this.ImportDeckAsync(cards.AsEnumerable());
 
         private async Task<TabletopDeckObject> ImportDeckAsync(IEnumerable<string> cards, bool require100Cards = false)
         {
             var testLogger = new TestLogger();
             var importer = new Importer(testLogger, new DiskCache(), TestHelper.CreateSaver(testLogger));
-            var deckInput = new StringDeckInput { Text = string.Join(Environment.NewLine, cards) };
-            Assert.IsTrue(await importer.TryImportAsync(deckInput));
+            var deckInput = new StringDeckInput { Text = string.Join(Environment.NewLine, cards), UseUwcCards = true };
+            Assert.IsTrue(await importer.TryImportAsync(deckInput), $"ERRORS: {string.Join(", ", testLogger.ErrorLines)}");
             Assert.IsEmpty(testLogger.ErrorLines);
             if (require100Cards) { Assert.IsEmpty(testLogger.WarningLines); }
             else 
@@ -106,8 +132,11 @@ namespace TabletopMtgImporter.Tests
         private class StringDeckInput : IDeckInput
         {
             public string Text { get; set; }
+            public bool UseUwcCards { get; set; }
 
             public string Name { get; } = $"TestDeck{Guid.NewGuid():n}";
+
+            public Regex UwcSetRegex => new Regex(this.UseUwcCards ? "." : "$^", RegexOptions.IgnoreCase);
 
             public TextReader OpenReader() => new StringReader(this.Text);
         }

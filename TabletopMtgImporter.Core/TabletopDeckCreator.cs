@@ -14,7 +14,7 @@ namespace TabletopMtgImporter
                 .ToArray();
             var tokens = cardsAndRelatedCards.Keys.Except(cards)
                 .ToArray();
-            var doubleFacedCards = cardsAndRelatedCards.Values.Where(c => c.Layout == "transform" || c.Layout == "modal_dfc")
+            var doubleFacedCards = cardsAndRelatedCards.Values.Where(IsDoubleFaced)
                 .ToArray();
 
             var deck = new TabletopDeckObject
@@ -29,7 +29,8 @@ namespace TabletopMtgImporter
                             {
                                 CardId = ToId(index),
                                 Name = "Card",
-                                Nickname = c.Name,
+                                // Use name from info to get UWC name if available
+                                Nickname = cardsAndRelatedCards[c].Name,
                             })
                             .ToList(),
                         DeckIds = Enumerable.Range(0, mainDeckCards.Length).Select(ToId).ToList(),
@@ -52,7 +53,8 @@ namespace TabletopMtgImporter
                             {
                                 CardId = ToId(index),
                                 Name = "Card",
-                                Nickname = c.Name,
+                                // Use name from info to get UWC name if available
+                                Nickname = cardsAndRelatedCards[c].Name,
                             })
                             .ToList(),
                         DeckIds = Enumerable.Range(0, tokens.Length).Select(ToId).ToList(),
@@ -99,5 +101,7 @@ namespace TabletopMtgImporter
         }
 
         static int ToId(int index) => 100 * (index + 1);
+
+        public static bool IsDoubleFaced(ScryfallCard card) => card.Layout == "transform" || card.Layout == "modal_dfc";
     }
 }

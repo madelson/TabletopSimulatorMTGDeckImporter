@@ -13,7 +13,7 @@ namespace TabletopMtgImporter
 {
     internal class ScryfallClient
     {
-        private readonly HttpClient _httpClient = new HttpClient { BaseAddress = new Uri("https://api.scryfall.com/") };
+        private static readonly HttpClient HttpClient = new() { BaseAddress = new Uri("https://api.scryfall.com/") };
         private readonly ILogger _logger;
         private readonly ICache _cache;
 
@@ -37,7 +37,7 @@ namespace TabletopMtgImporter
             // rate-limiting requested by scryfall
             await Task.Delay(TimeSpan.FromMilliseconds(50)).ConfigureAwait(false);
 
-            using var response = await this._httpClient.GetAsync(url).ConfigureAwait(false);
+            using var response = await HttpClient.GetAsync(url).ConfigureAwait(false);
             if (!response.IsSuccessStatusCode)
             {
                 var body = await (response.Content?.ReadAsStringAsync() ?? Task.FromResult("n/a")).ConfigureAwait(false);

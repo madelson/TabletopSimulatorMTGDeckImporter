@@ -18,7 +18,8 @@ namespace TabletopMtgImporter
             }
 
             this.Name = name;
-            this.Set = set;
+            // MA: for a while list cards would get various different set codes from Archidekt, but now Scryfall wants them as "plst"
+            this.Set = set is "mb1" or "fmb1" or "phed" or "plist" ? "plst" : set;
             this.CollectorNumber = collectorNumber;
             this.IsCommander = isCommander;
         }

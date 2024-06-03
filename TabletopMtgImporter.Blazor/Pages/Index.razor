@@ -12,7 +12,7 @@
                 @if (this.ShowDeckListHelpText)
                 {
                     <div class="my-1" style="font-size: 0.7rem; color:gray">
-                        This tool is easiest to use with <a href="https://archidekt.com">Architedekt</a>. 
+                        This tool is easiest to use with <a href="https://archidekt.com">Architedekt</a>.
                         <br /><br />
                         When viewing your deck, click the "Import" button on the left sidebar, then copy the contents into the text box below.
                         <br /><br />
@@ -41,6 +41,13 @@
                             class="btn btn-primary w-25">
                         Import
                     </button>
+                    <label>
+                        <input type="checkbox"
+                            @bind="this.UseUwcCards"
+                            disabled="@(this.Status == ImportStatus.InProgress)"
+                            title="Use UWC cards"
+                            typeof="checkbox" /> Use <a href="https://madelson.github.io/universes-within-collection/">UWC</a> cards
+                    </label>
                     @{
                         var statusMessageColor = this.Status switch
                         {
@@ -61,8 +68,7 @@
                             font-weight: bold;
                             font-family: consolas;
                             overflow-wrap: break-word;
-                            overflow-y: auto;
-                ">
+                            overflow-y: auto;">
                     @foreach (var entry in this.LogEntries)
                     {
                         var entryColor = entry.Type switch
@@ -87,6 +93,8 @@
         public string DeckName { get; set; } = string.Empty;
 
         public string DeckText { get; set; } = string.Empty;
+
+        public bool UseUwcCards { get; set; } = true;
 
         public string DefaultDeckName => Application.GetDeckName(this.DeckText);
 
@@ -114,7 +122,7 @@
                 });
 
                 var deckName = string.IsNullOrWhiteSpace(this.DeckName) ? this.DefaultDeckName : this.DeckName;
-                if (await Application.ImportAsync(logger, this.JSRuntime, deckName: deckName, deckText: this.DeckText))
+                if (await Application.ImportAsync(logger, this.JSRuntime, deckName: deckName, deckText: this.DeckText, useUwcCards: this.UseUwcCards))
                 {
                     this.Status = ImportStatus.Succeeded;
                     this.StatusMessage = "Downloaded!";
