@@ -11,28 +11,26 @@ namespace TabletopMtgImporter
 {
     internal static class UwcProvider
     {
-        private const string BaseUrl = "https://madelson.github.io/universes-within-collection/cards";
-
-        private static readonly Lazy<Task<IReadOnlyDictionary<string, CardInfo>>> CardNames = new(DownloadUwcCards);
+        private static readonly Lazy<Task<IReadOnlyDictionary<Guid, CardInfo>>> CardsByOracleId = new(DownloadUwcCards);
 
         public static async Task UpdateAsync(ScryfallCard card, IDeckInput input)
         {
             if (!input.UwcSetRegex.IsMatch(card.Set)
-                || !(await CardNames.Value).TryGetValue(card.Name, out var cardInfo)) 
+                // If the card is reversible, just use the ID from the first face. Possibly we should be treating each face separately,
+                // but let's cross that bridge when we come to it if someone really wants to use the reversible cards.
+                || !(await CardsByOracleId.Value).TryGetValue(card.OracleId ?? card.Faces![0].OracleId!.Value, out var cardInfo)) 
             { 
                 return;
             }
 
             if (TabletopDeckCreator.IsDoubleFaced(card))
             {
-                foreach (var face in card.Faces!)
-                {
-                    face.ImageUris["large"] = new($"{BaseUrl}/{UrlEncodeCardName(face.Name)}.png");
-                }
+                card.Faces![0].ImageUris["large"] = cardInfo.Image;
+                card.Faces![1].ImageUris["large"] = cardInfo.BackImage ?? throw new InvalidOperationException($"Missing back image for {card.Name} ({card.OracleId})");
             }
             else
             {
-                card.ImageUris!["large"] = new($"{BaseUrl}/{UrlEncodeCardName(card.Name)}.png");
+                card.ImageUris!["large"] = cardInfo.Image;
             }
 
             if (cardInfo.Nickname != null)
@@ -41,23 +39,25 @@ namespace TabletopMtgImporter
             }
         }
 
-        private static async Task<IReadOnlyDictionary<string, CardInfo>> DownloadUwcCards()
+        private static async Task<IReadOnlyDictionary<Guid, CardInfo>> DownloadUwcCards()
         {
             using HttpClient client = new();
-            using var cardsResponse = await client.GetAsync($"{BaseUrl}/cards.json");
+            using var cardsResponse = await client.GetAsync($"https://madelson.github.io/universes-within-collection/gallery/cardData.json");
             cardsResponse.EnsureSuccessStatusCode();
-            var cards = JsonConvert.DeserializeObject<Dictionary<string, CardInfo>>(await cardsResponse.Content.ReadAsStringAsync());
-            return cards!.Values.ToDictionary(c => c.Name);
+            var cards = JsonConvert.DeserializeObject<CardInfo[]>(await cardsResponse.Content.ReadAsStringAsync());
+            return cards.ToDictionary(c => c.OracleId);
         }
-
-        // github pages hosts the urls with %20 instead of + for spaces.
-        private static string UrlEncodeCardName(string name) => WebUtility.UrlEncode(name).Replace("+", "%20");
 
         private class CardInfo
         {
             [JsonProperty(Required = Required.Always)]
+            public Guid OracleId { get; set; }
+            [JsonProperty(Required = Required.Always)]
             public string Name { get; set; } = default!;
-            public string? Nickname { get; set; } = default!;
+            public string? Nickname { get; set; }
+            [JsonProperty(Required = Required.Always)]
+            public Uri Image { get; set; } = default!;
+            public Uri? BackImage { get; set; } = default!;
         }
     }
 }

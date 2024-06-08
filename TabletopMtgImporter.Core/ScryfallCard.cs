@@ -19,6 +19,9 @@ namespace TabletopMtgImporter
         public string CollectorNumber = default!;
         // see https://scryfall.com/docs/api/layouts
         public string? Layout;
+        // From the docs: "Always present except for the reversible_card layout where it will be absent; oracle_id will be found on each face instead."
+        [JsonProperty("oracle_id")]
+        public Guid? OracleId;
 
         [JsonProperty("card_faces")]
         public Face[]? Faces;
@@ -30,6 +33,8 @@ namespace TabletopMtgImporter
         public class Face
         {
             public string Name = default!;
+            [JsonProperty("oracle_id")]
+            public Guid? OracleId;
             [JsonProperty("image_uris")]
             public Dictionary<string, Uri> ImageUris = default!;
         }

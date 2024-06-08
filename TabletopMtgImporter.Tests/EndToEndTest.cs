@@ -92,22 +92,31 @@ namespace TabletopMtgImporter.Tests
             {
                 "1x Canoptek Wraith",
                 "1x Barbara Wright (who) 14",
-                "1x Atomize (pip) 94"
+                "1x Atomize (pip) 94",
+                "1x Adipose Offspring",
             };
 
             var deck = await this.ImportDeckAsync(cards);
             var mainDeck = deck.ObjectStates[0];
             CollectionAssert.AreEquivalent(
-                new[] { "Elara, Tapestry Weaver", "Tangle Wraith", "Atomize" },
+                new[] { "Elara, Tapestry Weaver", "Tangle Wraith", "Atomize", "Parasitic Progeny" },
                 mainDeck.ContainedObjects.Select(o => o.Nickname));
             CollectionAssert.AreEquivalent(
                 new[]
                 {
                     "https://madelson.github.io/universes-within-collection/cards/Canoptek%20Wraith.png",
                     "https://madelson.github.io/universes-within-collection/cards/Barbara%20Wright.png",
-                    "https://madelson.github.io/universes-within-collection/cards/Atomize.png"
+                    "https://madelson.github.io/universes-within-collection/cards/Atomize.png",
+                    "https://madelson.github.io/universes-within-collection/cards/Adipose%20Offspring.png"
                 },
                 mainDeck.CustomDeck.Values.Select(c => c.FaceUrl.AbsoluteUri));
+            var relatedCards = deck.ObjectStates[1];
+            Assert.IsEmpty(
+                new[]
+                {
+                    "https://madelson.github.io/universes-within-collection/cards/Alien%20(TWHO%202).png"
+                }
+                .Except(relatedCards.CustomDeck.Values.Select(c => c.FaceUrl.AbsoluteUri)));
         }
 
         private Task<TabletopDeckObject> ImportDeckAsync(params string[] cards) => this.ImportDeckAsync(cards.AsEnumerable());
