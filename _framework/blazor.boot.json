@@ -58,8 +58,8 @@
       "System.Text.Encodings.Web.dll": "sha256-2YgzhfsVkqbWS67x3gq2Gr9KHei8tXrLPSGexhdLWMM=",
       "System.Text.Json.dll": "sha256-\/fAxGUKv2\/CkknJDn5KA8ty\/X2vTUPwqFZ1VM1DmogM=",
       "System.Text.RegularExpressions.dll": "sha256-yahy2Bg4EajoORRxirTDaa7fHrkxic9Yuqrug0c\/3ds=",
-      "TabletopMtgImporter.Blazor.dll": "sha256-fskQ1rkNUa8ZKe6LGxKuTKKwHwBkkdVvEY1EAO44udU=",
-      "TabletopMtgImporter.Core.dll": "sha256-Qo3tQhqS2\/fvozmftAVphKjhBta22OjpgXBcQnKcttE="
+      "TabletopMtgImporter.Blazor.dll": "sha256-NyAa8eHS1IcpABnandR567727b97xBl5hRbyToKbXAA=",
+      "TabletopMtgImporter.Core.dll": "sha256-npsB95thdJ6FErTLqV\/AF6aSkGTsTiFMx5rZQ+eSPpo="
     },
     "extensions": null,
     "lazyAssembly": null,
