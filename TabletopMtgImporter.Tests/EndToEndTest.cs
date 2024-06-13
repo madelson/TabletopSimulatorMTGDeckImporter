@@ -119,6 +119,21 @@ namespace TabletopMtgImporter.Tests
                 .Except(relatedCards.CustomDeck.Values.Select(c => c.FaceUrl.AbsoluteUri)));
         }
 
+        [Test]
+        public async Task TestSetNumbersWithDash()
+        {
+            var cards = new[]
+            {
+                "1x Lure (plst) IMA-175 [Enchantment]",
+                "1x Questing Beast (plst) ELD-171 [Commander{top}]",
+            };
+            var deck = await this.ImportDeckAsync(cards);
+            var mainDeck = deck.ObjectStates[0];
+            CollectionAssert.AreEquivalent(
+                new[] { "Lure", "Questing Beast" },
+                mainDeck.ContainedObjects.Select(o => o.Nickname));
+        }
+
         private Task<TabletopDeckObject> ImportDeckAsync(params string[] cards) => this.ImportDeckAsync(cards.AsEnumerable());
 
         private async Task<TabletopDeckObject> ImportDeckAsync(IEnumerable<string> cards, bool require100Cards = false)

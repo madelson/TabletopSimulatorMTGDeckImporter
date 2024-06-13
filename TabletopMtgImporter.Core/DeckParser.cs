@@ -92,7 +92,7 @@ namespace TabletopMtgImporter
                     # card name. Disallow characters used to delimit the following sections as well as trailing whitespace
                     \s+(?<name>[^\s\(`^]+(\s+[^\s\(`^]+)*)
                     # set and optionally collector number
-                    (\s+\((?<set>\w+)\)(\s(?<collectorNumber>\d+[a-zA-Z]?))?)?
+                    (\s+\((?<set>\w+)\)(\s(?<collectorNumber>(\w+\-)?\d+[a-zA-Z]?))?)?
                     # optional foil marker
                     (\s+\*F\*)?
                     # category [x{a}{b}...,] (new format) or `x` (old format).
