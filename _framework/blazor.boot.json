@@ -49,7 +49,7 @@
       "System.Private.Xml.dll": "sha256-aCRga3OR5QrzgbmIDUgZy5ELERGmACgjTfiEWPJErQg=",
       "System.Private.Xml.Linq.dll": "sha256-eHaUdaQVtDMINPucu0NJV3BQ\/ALgYf7wTX\/D5DAVSqI=",
       "System.Runtime.CompilerServices.Unsafe.dll": "sha256-B0kXUg2KNMuwb\/Q1IIxR03v+k+rTMCC7Dp\/1PehHd4I=",
-      "System.Runtime.dll": "sha256-8EXcOsPPGW9w1+j9UUs+t4dzH7ulPrkL3h7aPtQFvL4=",
+      "System.Runtime.dll": "sha256-zXLbAr9Y9vmqG2vyqsHN8h++v5oq1itYOIJNHByHYLY=",
       "System.Runtime.Numerics.dll": "sha256-hTBI\/XoBOn0G0knZBOQzsRyWxD5PXw0bavmhT1cJcu8=",
       "System.Runtime.Serialization.Formatters.dll": "sha256-2tSFo91QqMYlXt3cYD1HVRXlCq\/bpk4kls5xgVUhf0w=",
       "System.Runtime.Serialization.Primitives.dll": "sha256-w07+cDK4aTh4sMMSOXnyuv5LTonNHMbdNTdCFBEY9tg=",
@@ -58,7 +58,7 @@
       "System.Text.Encodings.Web.dll": "sha256-2YgzhfsVkqbWS67x3gq2Gr9KHei8tXrLPSGexhdLWMM=",
       "System.Text.Json.dll": "sha256-\/fAxGUKv2\/CkknJDn5KA8ty\/X2vTUPwqFZ1VM1DmogM=",
       "System.Text.RegularExpressions.dll": "sha256-yahy2Bg4EajoORRxirTDaa7fHrkxic9Yuqrug0c\/3ds=",
-      "TabletopMtgImporter.Blazor.dll": "sha256-NyAa8eHS1IcpABnandR567727b97xBl5hRbyToKbXAA=",
+      "TabletopMtgImporter.Blazor.dll": "sha256-yYI0aPoiNbCKnvvE\/T8nB3Hj8M5yM5e6dxNVsBski5s=",
       "TabletopMtgImporter.Core.dll": "sha256-npsB95thdJ6FErTLqV\/AF6aSkGTsTiFMx5rZQ+eSPpo="
     },
     "extensions": null,
