@@ -20,7 +20,17 @@ namespace TabletopMtgImporter.Blazor
         public Task<string?> GetValueOrDefaultAsync(string key) =>
             this._jsRuntime.InvokeAsync<string?>("localStorage.getItem", key).AsTask();
 
-        public Task SetValueAsync(string key, string value) =>
-            this._jsRuntime.InvokeVoidAsync("localStorage.setItem", key, value).AsTask();
+        public async Task SetValueAsync(string key, string value)
+        {
+            try { await SetValueInternalAsync(); }
+            catch 
+            {
+                // set can fail because localStorage fills up; clear and then retry
+                await this._jsRuntime.InvokeVoidAsync("localStorage.clear");
+                await SetValueInternalAsync();
+            }
+
+            ValueTask SetValueInternalAsync() => this._jsRuntime.InvokeVoidAsync("localStorage.setItem", key, value);
+        }
     }
 }
