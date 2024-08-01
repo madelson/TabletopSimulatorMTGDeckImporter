@@ -22,7 +22,7 @@
       "Microsoft.Extensions.Primitives.dll": "sha256-YColTWA58whC+8aBjv1O7HgsyYrbHTba601EkNDWAlo=",
       "Microsoft.JSInterop.dll": "sha256-1O10NbohjsCB5uHF5eUhiUCgzW3N7OOrliMmmbajXfk=",
       "Microsoft.JSInterop.WebAssembly.dll": "sha256-ZUAJcpxOKbyho0qWTtYQM0us3udz\/XcSWLwXYbXaAr0=",
-      "netstandard.dll": "sha256-2b2Eu+6R5KxFWHM5EmV788P6Y3zg3X6tYtAVCtAVa6s=",
+      "netstandard.dll": "sha256-i13MLgOQ7THoH9fX+HrwcKHfJ7jV2SKxgYSr7wHMIbg=",
       "Newtonsoft.Json.dll": "sha256-cs8pHUurDt0IqbB8YXPh560au3q3J\/1wRL9jBddRVmE=",
       "System.Collections.Concurrent.dll": "sha256-2idkh7EazpoVWjyBebJyH0oBp+Tl5f0jSzldwuT7Xsc=",
       "System.Collections.dll": "sha256-DSOCZvawKppfkYwZePDSuya+vmyu\/sFE8QzQ61H7tmU=",
@@ -40,7 +40,7 @@
       "System.Linq.dll": "sha256-vIJGGrVgmeiLiwUOhTbt0uzinukg1OuSP5ws5z2RNm8=",
       "System.Linq.Expressions.dll": "sha256-eg\/VbrRqlMk3x2pW90214CdSpsx6nByJk0wTDNWfCAU=",
       "System.Memory.dll": "sha256-lPjeDXbIIL3tj6k\/ryld9s7ACe3U\/DJvzHAaMU8COaE=",
-      "System.Net.Http.dll": "sha256-KJEI1ocMF1ZOyPG56fsaZeabpDXVR4a4d9SNuglBt2Y=",
+      "System.Net.Http.dll": "sha256-BK0gtYV3qW5b\/JTHaQrHjRa83G3cPkDHCg9MlEwWvq0=",
       "System.Net.Primitives.dll": "sha256-l84CNm\/Rs47R0ZZ6q1Oiifv+GfaurV6Ga+9wSc22aas=",
       "System.ObjectModel.dll": "sha256-H5s4WVM2KZBxDMX6pcm+J5pUPcgGuCd7QcPe8Q6HwGE=",
       "System.Private.CoreLib.dll": "sha256-JLmYEG6sx4caR5qU\/GdtZnnDm3tekMFcRezFSG8lqjc=",
@@ -58,8 +58,8 @@
       "System.Text.Encodings.Web.dll": "sha256-2YgzhfsVkqbWS67x3gq2Gr9KHei8tXrLPSGexhdLWMM=",
       "System.Text.Json.dll": "sha256-\/fAxGUKv2\/CkknJDn5KA8ty\/X2vTUPwqFZ1VM1DmogM=",
       "System.Text.RegularExpressions.dll": "sha256-yahy2Bg4EajoORRxirTDaa7fHrkxic9Yuqrug0c\/3ds=",
-      "TabletopMtgImporter.Blazor.dll": "sha256-yYI0aPoiNbCKnvvE\/T8nB3Hj8M5yM5e6dxNVsBski5s=",
-      "TabletopMtgImporter.Core.dll": "sha256-npsB95thdJ6FErTLqV\/AF6aSkGTsTiFMx5rZQ+eSPpo="
+      "TabletopMtgImporter.Blazor.dll": "sha256-0qlWoumcfLT8CkVq+lY7wsQ+pf1H5CbQZcx+t+p4tos=",
+      "TabletopMtgImporter.Core.dll": "sha256-zj8f0FCGVZ6Bf398cdmFGIrrH7lR+CgqSPSVadzbVDE="
     },
     "extensions": null,
     "lazyAssembly": null,
