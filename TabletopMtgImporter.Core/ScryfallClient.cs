@@ -4,16 +4,25 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
-using System.Numerics;
-using System.Security.Cryptography;
-using System.Text;
+using System.Net.Http.Headers;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace TabletopMtgImporter
 {
     internal class ScryfallClient
     {
-        private static readonly HttpClient HttpClient = new() { BaseAddress = new Uri("https://api.scryfall.com/") };
+        private static readonly HttpClient HttpClient = new() 
+        { 
+            BaseAddress = new Uri("https://api.scryfall.com/"),
+            // required by Scryfall now: https://scryfall.com/docs/api
+            DefaultRequestHeaders =
+            {
+                Accept = { new("application/json") },
+                UserAgent = { new("TabletopSimulatorMtgImporter", Assembly.GetEntryAssembly().GetName().Version.ToString()) }
+            }
+        };
+
         private readonly ILogger _logger;
         private readonly ICache _cache;
 
