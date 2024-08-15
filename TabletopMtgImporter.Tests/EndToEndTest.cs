@@ -134,6 +134,17 @@ namespace TabletopMtgImporter.Tests
                 mainDeck.ContainedObjects.Select(o => o.Nickname));
         }
 
+        [Test]
+        public async Task TestMkmArtVariationCollectorNumber()
+        {
+            var cards = new[] { "1x Wojek Investigator (mkm) 36† [Draw]" };
+            var deck = await this.ImportDeckAsync(cards);
+            var mainDeck = deck.ObjectStates[0];
+            CollectionAssert.AreEquivalent(
+                new[] { "Wojek Investigator" },
+                mainDeck.ContainedObjects.Select(o => o.Nickname));
+        }
+
         private Task<TabletopDeckObject> ImportDeckAsync(params string[] cards) => this.ImportDeckAsync(cards.AsEnumerable());
 
         private async Task<TabletopDeckObject> ImportDeckAsync(IEnumerable<string> cards, bool require100Cards = false)

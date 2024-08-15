@@ -87,7 +87,12 @@ namespace TabletopMtgImporter
 
                     if (info != null)
                     {
-                        await UwcProvider.UpdateAsync(info, deckInput);
+                        try { await UwcProvider.UpdateAsync(info, deckInput); }
+                        catch (Exception ex)
+                        {
+                            this._logger.Error($"Failed to update UWC cards. Detailed information: {ex}");
+                            throw;
+                        }
 
                         cardInfo[card] = info;
                         foreach (var relatedCard in (info.RelatedCards ?? Enumerable.Empty<ScryfallCard.RelatedCard>())

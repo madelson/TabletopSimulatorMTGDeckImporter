@@ -19,7 +19,8 @@ namespace TabletopMtgImporter
             DefaultRequestHeaders =
             {
                 Accept = { new("application/json") },
-                UserAgent = { new("TabletopSimulatorMtgImporter", Assembly.GetEntryAssembly().GetName().Version.ToString()) }
+                // Assembly.GetEntryAssembly() can return null when running via tests
+                UserAgent = { new("TabletopSimulatorMtgImporter", Assembly.GetEntryAssembly()?.GetName().Version.ToString() ?? "1.0") }
             }
         };
 
