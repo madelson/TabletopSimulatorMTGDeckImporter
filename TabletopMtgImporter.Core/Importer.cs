@@ -18,6 +18,15 @@ namespace TabletopMtgImporter
         private static readonly Regex NonStandardCardTypesRegex = 
             new(@"\b(conspiracy|dungeon|phenomenon|plane|scheme|vanguard|emblem|card)\b", RegexOptions.IgnoreCase);
 
+        // For now, these are the cards that go with face down effects. They come through from scryfall
+        // as combo_piece creatures
+        public static readonly IReadOnlyCollection<string> MorphSupportCards = new[]
+        {
+            "Morph",
+            "Manifest",
+            "A Mysterious Creature"
+        };
+
         private readonly ILogger _logger;
         private readonly ICache _cache;
         private readonly ISaver _saver;
@@ -96,7 +105,9 @@ namespace TabletopMtgImporter
 
                         cardInfo[card] = info;
                         foreach (var relatedCard in (info.RelatedCards ?? Enumerable.Empty<ScryfallCard.RelatedCard>())
-                            .Where(rc => rc.Component != "combo_piece" || NonStandardCardTypesRegex.IsMatch(rc.TypeLine)))
+                            .Where(rc => rc.Component != "combo_piece" 
+                                || NonStandardCardTypesRegex.IsMatch(rc.TypeLine)
+                                || MorphSupportCards.Contains(rc.Name)))
                         {
                             if (loadedRelatedCardUris.Add(relatedCard.Uri))
                             {

@@ -16,12 +16,12 @@ namespace TabletopMtgImporter.Tests
         [TestCase("Archidekt1CardNameFormat.txt", ExpectedResult = "count=110,hash=uwIFHcN4qgAHynr8PUtidw==")]
         [TestCase("Archidekt1xCardNameCodeCategoryLabel.txt", ExpectedResult = "count=107,hash=8ihrLpfvLbshr11zjvJohw==")]
         [TestCase("MaybeboardAndAlternateArtCollectorNumber.txt", ExpectedResult = "count=113,hash=bPMsgich2klAw1wqpTnBlQ==")]
-        [TestCase("ComboPieceRelatedCards.txt", ExpectedResult = "count=121,hash=17/Qnlk4ImPNXeJo03hFHA==")]
+        [TestCase("ComboPieceRelatedCards.txt", ExpectedResult = "count=123,hash=acUY+lTIAX+++UJjnO9rrg==")]
         [TestCase("Foils.txt", ExpectedResult = "count=112,hash=KuTaz4HCMEypbfOcQb1Idg==")]
-        [TestCase("SameNameTokens.txt", ExpectedResult = "count=121,hash=17/Qnlk4ImPNXeJo03hFHA==")]
-        [TestCase("ArchidektUpdatedCategoryFormat.txt", ExpectedResult = "count=101,hash=B+6eJzK8ihFObkI/htreeg==")]
-        [TestCase("ArchidektUpdatedCategoryFormatMultipleCommanders.txt", ExpectedResult = "count=105,hash=adsSlvFJryKlNUh3mEUbqQ==")]
-        [TestCase("DoubleSidedTokens.txt", ExpectedResult = "count=109,hash=OwA9GJN3VRVT+4GrLUN3pg==")]
+        [TestCase("SameNameTokens.txt", ExpectedResult = "count=123,hash=acUY+lTIAX+++UJjnO9rrg==")]
+        [TestCase("ArchidektUpdatedCategoryFormat.txt", ExpectedResult = "count=103,hash=96jVGz7zV1ClOF2+d5nEVA==")]
+        [TestCase("ArchidektUpdatedCategoryFormatMultipleCommanders.txt", ExpectedResult = "count=107,hash=y30Uc5QityRI7N+vjqPAsg==")]
+        [TestCase("DoubleSidedTokens.txt", ExpectedResult = "count=110,hash=3RzuLfkjaDIvMoo2ncgdtA==")]
         public async Task<string> TestRunsEndToEndWithoutErrors(string sampleName)
         {
             using var sample = SamplesHelper.GetSample(sampleName);
@@ -143,6 +143,21 @@ namespace TabletopMtgImporter.Tests
             CollectionAssert.AreEquivalent(
                 new[] { "Wojek Investigator" },
                 mainDeck.ContainedObjects.Select(o => o.Nickname));
+        }
+
+        [Test]
+        public async Task TestBringsInMorphSupportCards()
+        {
+            var cards = new[]
+            {
+                "1x Scornful Egotist (scg)", // morph
+                "1x Cloudform (c18)", // manifest
+                "1x Experiment Twelve (mkc)", // disguise
+                "1x Bashful Beastie (dsk)", // manifest dread
+            };
+            var deck = await this.ImportDeckAsync(cards);
+            var relatedCards = deck.ObjectStates[1];
+            Assert.IsEmpty(Importer.MorphSupportCards.Except(relatedCards.ContainedObjects.Select(c => c.Nickname)));
         }
 
         private Task<TabletopDeckObject> ImportDeckAsync(params string[] cards) => this.ImportDeckAsync(cards.AsEnumerable());
