@@ -45,7 +45,7 @@ namespace TabletopMtgImporter
             this._logger.Info($"Downloading {url}");
 
             // rate-limiting requested by scryfall (they want < 10/sec)
-            await Task.Delay(TimeSpan.FromMilliseconds(150)).ConfigureAwait(false);
+            await Task.Delay(TimeSpan.FromMilliseconds(500)).ConfigureAwait(false);
 
             using var response = await HttpClient.GetAsync(url).ConfigureAwait(false);
             if (!response.IsSuccessStatusCode)
