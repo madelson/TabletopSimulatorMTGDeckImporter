@@ -21,7 +21,7 @@ namespace TabletopMtgImporter.Tests
         [TestCase("SameNameTokens.txt", ExpectedResult = "count=123,hash=acUY+lTIAX+++UJjnO9rrg==")]
         [TestCase("ArchidektUpdatedCategoryFormat.txt", ExpectedResult = "count=103,hash=96jVGz7zV1ClOF2+d5nEVA==")]
         [TestCase("ArchidektUpdatedCategoryFormatMultipleCommanders.txt", ExpectedResult = "count=107,hash=y30Uc5QityRI7N+vjqPAsg==")]
-        [TestCase("DoubleSidedTokens.txt", ExpectedResult = "count=110,hash=3RzuLfkjaDIvMoo2ncgdtA==")]
+        [TestCase("DoubleSidedTokens.txt", ExpectedResult = "count=109,hash=U6yUA4dTU33V/t4ScQDfSw==")]
         public async Task<string> TestRunsEndToEndWithoutErrors(string sampleName)
         {
             using var sample = SamplesHelper.GetSample(sampleName);

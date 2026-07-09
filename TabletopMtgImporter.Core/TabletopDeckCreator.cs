@@ -39,7 +39,7 @@ namespace TabletopMtgImporter
                                 t => t.index + 1,
                                 t => new TabletopDeckObject.CardInfo
                                 {
-                                    FaceUrl = (cardsAndRelatedCards[t.card].ImageUris ?? cardsAndRelatedCards[t.card].Faces![0].ImageUris)["large"],
+                                    FaceUrl = RewriteUrl((cardsAndRelatedCards[t.card].ImageUris ?? cardsAndRelatedCards[t.card].Faces![0].ImageUris)["large"]),
                                 }
                             ),
                         Transform = { PosY = 1 }
@@ -63,9 +63,10 @@ namespace TabletopMtgImporter
                                 t => t.index + 1,
                                 t => new TabletopDeckObject.CardInfo
                                 {
-                                    FaceUrl = (cardsAndRelatedCards[t.card].ImageUris ?? cardsAndRelatedCards[t.card].Faces![0].ImageUris)["large"],
-                                    BackUrl = (cardsAndRelatedCards[t.card].ImageUris ?? cardsAndRelatedCards[t.card].Faces![1].ImageUris)["large"]
-                                        ?? TabletopDeckObject.CardInfo.DefaultBackUrl
+                                    FaceUrl = RewriteUrl((cardsAndRelatedCards[t.card].ImageUris ?? cardsAndRelatedCards[t.card].Faces![0].ImageUris)["large"]),
+                                    BackUrl = RewriteUrl(
+                                        (cardsAndRelatedCards[t.card].ImageUris ?? cardsAndRelatedCards[t.card].Faces![1].ImageUris)["large"]
+                                            ?? TabletopDeckObject.CardInfo.DefaultBackUrl)
                                 }
                             ),
                         Transform = { PosX = 2.2, RotZ = 0 },
@@ -88,8 +89,8 @@ namespace TabletopMtgImporter
                                 t => t.index + 1,
                                 t => new TabletopDeckObject.CardInfo
                                 {
-                                    FaceUrl = t.card.Faces![0].ImageUris["large"],
-                                    BackUrl = t.card.Faces[1].ImageUris["large"],
+                                    FaceUrl = RewriteUrl(t.card.Faces![0].ImageUris["large"]),
+                                    BackUrl = RewriteUrl(t.card.Faces[1].ImageUris["large"]),
                                 }
                             ),
                         Transform = { PosX = 2.2, RotZ = 0 },
@@ -103,5 +104,24 @@ namespace TabletopMtgImporter
         static int ToId(int index) => 100 * (index + 1);
 
         public static bool IsDoubleFaced(ScryfallCard card) => card.Layout == "transform" || card.Layout == "modal_dfc";
+
+        /// <summary>
+        /// Scryfall has taken to returning URLs like https://cards.scryfall.io/large/front/1/d/1d52e527-3835-4350-8c01-0f2d5d623b9c.jpg?1782707107,
+        /// which tabletop complains about because it can't determine the image type
+        /// </summary>
+        private static Uri RewriteUrl(Uri uri)
+        {
+            if (string.Equals(uri.Host, "cards.scryfall.io", StringComparison.OrdinalIgnoreCase))
+            {
+                var builder = new UriBuilder(uri)
+                {
+                    Host = "lucky-pond-4f97.mike-adelson314.workers.dev",
+                };
+
+                return builder.Uri;
+            }
+
+            return uri;
+        }
     }
 }

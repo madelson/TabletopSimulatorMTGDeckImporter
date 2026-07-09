@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29613.14
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.37216.2 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TabletopMtgImporter.Console", "TabletopMtgImporter.Console\TabletopMtgImporter.Console.csproj", "{7D043E0C-443D-4CB9-BAC6-2041ECB5B8BC}"
 EndProject
@@ -12,6 +12,11 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TabletopMtgImporter.Wpf", "TabletopMtgImporter.Wpf\TabletopMtgImporter.Wpf.csproj", "{E7FF90EC-3803-4B8B-BCDB-9CFF4C299FD2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TabletopMtgImporter.Blazor", "TabletopMtgImporter.Blazor\TabletopMtgImporter.Blazor.csproj", "{3642643D-182F-4055-B860-8BF9CFCA9C8A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Cloudflare", "Cloudflare", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+	ProjectSection(SolutionItems) = preProject
+		scryfall_proxy_worker.js = scryfall_proxy_worker.js
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
