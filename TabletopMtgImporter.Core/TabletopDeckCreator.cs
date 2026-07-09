@@ -105,12 +105,9 @@ namespace TabletopMtgImporter
 
         public static bool IsDoubleFaced(ScryfallCard card) => card.Layout == "transform" || card.Layout == "modal_dfc";
 
-        /// <summary>
-        /// Scryfall has taken to returning URLs like https://cards.scryfall.io/large/front/1/d/1d52e527-3835-4350-8c01-0f2d5d623b9c.jpg?1782707107,
-        /// which tabletop complains about because it can't determine the image type
-        /// </summary>
         private static Uri RewriteUrl(Uri uri)
         {
+            // See SCRYFALL_PROXY for why we need this
             if (string.Equals(uri.Host, "cards.scryfall.io", StringComparison.OrdinalIgnoreCase))
             {
                 var builder = new UriBuilder(uri)

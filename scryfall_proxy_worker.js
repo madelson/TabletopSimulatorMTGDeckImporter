@@ -1,4 +1,5 @@
-// This should be run in a Cloudflare Worker as in https://github.com/gogurt1984/Tabletop-MTG---Gogurts-DIY-Table
+// SCRYFALL_PROXY
+// This script should be run in a Cloudflare Worker as in https://github.com/gogurt1984/Tabletop-MTG---Gogurts-DIY-Table
 // See https://dash.cloudflare.com/efde9a0a4a2556bdd72677d274c246cf/workers/services/view/lucky-pond-4f97/production/settings
 // Make sure the cache is enabled in runtime settings. See https://developers.cloudflare.com/workers/cache/
 
